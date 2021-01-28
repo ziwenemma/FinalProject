@@ -20,11 +20,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -36,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivitySitter extends AppCompatActivity {
     private static final int GALLERY_INTENT_CODE = 1023 ;
     TextView fullName,email,phone,verifyMsg;
     FirebaseAuth fAuth;
@@ -51,8 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-
+        setContentView(R.layout.activity_profile_sitter);
 
         phone = findViewById(R.id.profilePhone);
         fullName = findViewById(R.id.profileName);
@@ -66,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
+        StorageReference profileRef = storageReference.child("babysitterusers/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
             @Override
@@ -74,13 +68,15 @@ public class ProfileActivity extends AppCompatActivity {
                 Picasso.get().load(uri).into(profileImage);
             }
         });
-
         userId = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
 
 
 
-        DocumentReference documentReference = fStore.collection("parentuser").document(userId);
+
+
+
+        DocumentReference documentReference = fStore.collection("babysitterusers").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
 
             @Override
@@ -116,13 +112,13 @@ public class ProfileActivity extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(com.example.finalproject.ProfileActivity.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(com.example.finalproject.ProfileActivitySitter.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
 
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(com.example.finalproject.ProfileActivity.this, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(com.example.finalproject.ProfileActivitySitter.this, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -144,17 +140,11 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-
     }
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();//logout
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
-
-
-
-
-
     }
 }

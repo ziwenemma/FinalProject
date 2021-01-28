@@ -27,7 +27,7 @@ public class MainPageSitter extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_profile) {
-            Intent myintent = new Intent(MainPageSitter.this, ProfileActivity.class);
+            Intent myintent = new Intent(MainPageSitter.this, ProfileActivitySitter.class);
             startActivity(myintent);
         }
         return super.onOptionsItemSelected(item);
