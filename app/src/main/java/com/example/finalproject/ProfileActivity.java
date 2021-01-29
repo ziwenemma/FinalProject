@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
@@ -48,6 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
     ImageView profileImage;
     StorageReference storageReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
 
         profileImage = findViewById(R.id.profileImage);
+        changeProfileImage=findViewById(R.id.changeProfile);
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -139,13 +144,30 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+        changeProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // open gallery
+
+              Intent i = new Intent(v.getContext(),EditProfile.class);
+              i.putExtra("fName",fullName.getText().toString());
+              i.putExtra("email",email.getText().toString());
+              i.putExtra("phone",phone.getText().toString());
+
+              startActivity(i);
 
 
 
 
-
+            }
+        });
 
     }
+
+
+
+
+
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();//logout
@@ -155,6 +177,10 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+    }
 
+    public void changeProfile(View view) {
+             Intent intent= new Intent(this, EditProfile.class );
+             startActivity(intent);
     }
 }

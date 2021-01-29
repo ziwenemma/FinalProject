@@ -1,17 +1,22 @@
 package com.example.finalproject;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,14 +30,15 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivityParent extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button loginButton;
-    Button signupButton;
+    Button signupButton,changeProfileImage;
     FirebaseAuth fAuth;
     TextView forgotTextLink;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_parent);
-
 
 
         mEmail = findViewById(R.id.email);
@@ -40,7 +46,7 @@ public class LoginActivityParent extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         signupButton = (Button) findViewById(R.id.signupButton);
         fAuth = FirebaseAuth.getInstance();
-        forgotTextLink=findViewById(R.id.forgotPassword);
+        forgotTextLink = findViewById(R.id.forgotPassword);
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +102,8 @@ public class LoginActivityParent extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                final EditText resetMail=new EditText(v.getContext());
-                AlertDialog.Builder passwordResetDialog=new AlertDialog.Builder(v.getContext());
+                final EditText resetMail = new EditText(v.getContext());
+                AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password ?");
                 passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
                 passwordResetDialog.setView(resetMail);
@@ -107,19 +113,19 @@ public class LoginActivityParent extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String mail=resetMail.getText().toString();
+                        String mail = resetMail.getText().toString();
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
 
                             @Override
                             public void onSuccess(Void aVoid) {
 
-                                Toast.makeText(LoginActivityParent.this,"Reset Link Sent To Your Email", Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivityParent.this, "Reset Link Sent To Your Email", Toast.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
 
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginActivityParent.this,"Error ! Reset Link is Not Sent"+e.getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(LoginActivityParent.this, "Error ! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -136,9 +142,7 @@ public class LoginActivityParent extends AppCompatActivity {
                 passwordResetDialog.create().show();
             }
         });
+
     }
-
-
-
 }
 
