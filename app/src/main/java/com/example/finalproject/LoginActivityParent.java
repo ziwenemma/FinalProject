@@ -61,7 +61,7 @@ public class LoginActivityParent extends AppCompatActivity {
                     return;
                 }
                 if (password.length() < 6) {
-                    mPassword.setError("password mush be more than 6 characters");
+                    mPassword.setError("password must be more than 6 characters");
                     return;
                 }
 
