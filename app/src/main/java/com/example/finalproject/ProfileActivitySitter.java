@@ -54,6 +54,7 @@ public class ProfileActivitySitter extends AppCompatActivity {
         resetPassLocal = findViewById(R.id.resetPasswordLocal);
 
         profileImage = findViewById(R.id.profileImage);
+        changeProfileImage=findViewById(R.id.changeProfile);
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -135,16 +136,40 @@ public class ProfileActivitySitter extends AppCompatActivity {
 
             }
         });
+        changeProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // open gallery
+
+                Intent i = new Intent(v.getContext(),EditProfile.class);
+                i.putExtra("fName",fullName.getText().toString());
+                i.putExtra("email",email.getText().toString());
+                i.putExtra("phone",phone.getText().toString());
+
+                startActivity(i);
 
 
 
 
+            }
+        });
 
     }
+
+
+
+
+
+
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();//logout
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
+    }
+
+    public void changeProfile(View view) {
+        Intent intent= new Intent(this, EditProfile.class );
+        startActivity(intent);
     }
 }
