@@ -2,11 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainPageSitter"
-    >
+    tools:context=".MainPageSitter">
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/account"
         android:title="go to profile page"
         app:showAsAction="ifRoom"/>
+
+
+
 </menu>
