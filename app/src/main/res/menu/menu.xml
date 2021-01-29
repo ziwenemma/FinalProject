@@ -7,6 +7,6 @@
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/account"
-        android:title="go to profile page"
+        android:title="go to parent profile page"
         app:showAsAction="ifRoom"/>
 </menu>

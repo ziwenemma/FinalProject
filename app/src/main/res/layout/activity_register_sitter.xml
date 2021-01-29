@@ -57,7 +57,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/email_sitter"
+                android:id="@+id/email"
                 android:background="#C0C0C0"
                 android:hint="Email"
                 android:drawableLeft="@drawable/email"

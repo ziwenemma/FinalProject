@@ -8,6 +8,20 @@
     android:gravity="center"
     android:padding="20dp"
     tools:context=".ContactUs">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact Us"
+        android:textSize="28sp"
+        android:gravity="center"
+        android:textColor="#7B68EE"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send message to our email：2036312218@qq.com"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,9 +38,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_to"
+            android:text="2936312218@qq.com"
             android:background="@android:color/transparent"/>
 
     </LinearLayout>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -36,6 +52,7 @@
         android:padding="10dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/bg_round"/>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -49,14 +66,15 @@
         android:background="@drawable/bg_round"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_send"
-        android:text="send"
+        android:text="Submit"
         android:textSize="25sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:padding="10dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/bg_round"/>
+        android:background="#7B68EE"/>
+
 
 </LinearLayout>

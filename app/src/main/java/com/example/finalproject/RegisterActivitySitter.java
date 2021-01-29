@@ -40,7 +40,7 @@ public class RegisterActivitySitter extends AppCompatActivity {
         setContentView(R.layout.activity_register_sitter);
 
         username = findViewById(R.id.username_sitter);
-        mEmail = findViewById(R.id.email_sitter);
+        mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password_sitter);
         mPhone = findViewById(R.id.phoneNumber_sitter);
         signupButton = (Button) findViewById(R.id.signupButton_sitter);

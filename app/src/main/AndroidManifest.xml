@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutUs"></activity>
+        <activity android:name=".ThankActivity"></activity>
+        <activity android:name=".AboutUs" />
         <activity android:name=".ContactUs" />
         <activity android:name=".EditProfileSitter" />
         <activity android:name=".EditProfile" />
         <activity android:name=".ProfileActivitySitter" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".MainPageSitter" android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainPageSitter"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainPageParent" />
         <activity android:name=".RegisterActivitySitter" />
         <activity android:name=".LoginActivitySitter" />

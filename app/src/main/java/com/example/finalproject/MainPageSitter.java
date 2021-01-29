@@ -11,7 +11,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.ListFragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainPageSitter extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -19,6 +21,8 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,24 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
         }
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item){
+        int id= item.getItemId();
+        if(id== R.id.nav_home){
+            startActivity(new Intent(getApplicationContext(), MainPageSitter.class));
+        }else if(id==R.id.nav_contact) {
+            startActivity(new Intent(getApplicationContext(), ContactUs.class));
+        }
+        else if (id==R.id.nav_about){
+            startActivity(new Intent(getApplicationContext(),AboutUs.class));
+        }
+        else if (id==R.id.nav_profile){
+            startActivity(new Intent(getApplicationContext(),ProfileActivitySitter.class));
+        }
+        DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return  true;
+    }
 
 
     @Override
@@ -72,11 +94,8 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
             Intent myintent = new Intent(MainPageSitter.this, ProfileActivitySitter.class);
             startActivity(myintent);
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return true;
-    }
 }

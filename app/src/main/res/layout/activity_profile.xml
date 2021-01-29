@@ -7,7 +7,14 @@
     android:layout_height="match_parent"
     android:background="#5284E1ED"
     tools:context=".ProfileActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Parent profile"
+        android:gravity="center_horizontal"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#B7C57EE1"/>
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="150dp"
