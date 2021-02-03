@@ -74,8 +74,8 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
         else if (id==R.id.nav_about){
             startActivity(new Intent(getApplicationContext(),AboutUs.class));
         }
-        else if (id==R.id.nav_profile){
-            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+        else if (id==R.id.nav_post){
+            startActivity(new Intent(getApplicationContext(),ParentInformation.class));
         }
         DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -25,9 +25,9 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_history"
+            android:id="@+id/nav_post"
             android:icon="@drawable/home_icon"
-            android:title="Appointment history"></item>
+            android:title="MyInformation"></item>
 
     </group>
 
