@@ -158,13 +158,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                     return;
                 }
 
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
-                String Id = mDatabase.push().getKey();
-                Information information = new Information(Id,ParentName,ChildAge,ChildName,ChildNum,EmailAdd,Phone,Add,Requirement,gender);
-                mDatabase.child("ParentPost").child(fAuth.getCurrentUser().getUid()).setValue(information);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("id", Id);
-                editor.apply();
 
                 String email= changeEmailAdd.getText().toString();
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -188,6 +181,20 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(PostInfoParent.this,"Information Updated", Toast.LENGTH_SHORT).show();
+
+
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
+                                String Id = mDatabase.push().getKey();
+                                Information information = new Information(Id,changeParentName.getText().toString(),
+                                        changeChildName.getText().toString(),
+                                        changeChildAge.getText().toString(),changeChildNum.getText().toString(),
+                                        email,changePhone.getText().toString(),changeAdd.getText().toString(),changeRequirement.getText().toString(),changeGender.getText().toString());
+                                mDatabase.child("ParentPost").child(fAuth.getCurrentUser().getUid()).setValue(information);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("id", Id);
+                                editor.apply();
+
+
                                 startActivity(new Intent(getApplicationContext(),ParentInformation.class));
                                 finish();
                             }
