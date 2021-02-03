@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Post Information"
+        android:text="Update information"
         android:gravity="center_horizontal"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -18,10 +18,10 @@
         android:textColor="#000000"/>
 
     <ImageView
-        android:id="@+id/profileImageView"
+        android:id="@+id/changeImageView"
         android:layout_width="250dp"
-        android:layout_height="173dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="38dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,9 +29,9 @@
         tools:ignore="VectorDrawableCompat" />
 
     <EditText
-        android:id="@+id/profileFullName"
+        android:id="@+id/changeParentName"
         android:layout_width="186dp"
-        android:layout_height="37dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -41,12 +41,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImageView" />
 
     <EditText
-        android:id="@+id/profileChildName"
+        android:id="@+id/changeChildName"
         android:layout_width="168dp"
-        android:layout_height="37dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -56,28 +56,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/changeImageView" />
 
 
     <EditText
-        android:id="@+id/profileChildAge"
+        android:id="@+id/changeChildAge"
         android:layout_width="177dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Child Age"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
 
     <EditText
-        android:id="@+id/profileChildnum"
-        android:layout_width="365dp"
-        android:layout_height="37dp"
+        android:id="@+id/changeChildnum"
+        android:layout_width="186dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
@@ -87,27 +86,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
 
     <Spinner
-        android:id="@+id/profileChildgender"
+        android:id="@+id/changeChildgender"
         android:layout_width="169dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:entries="@array/gender_arrays"
         android:prompt="@string/gender_prompt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
 
     <EditText
-        android:id="@+id/profileEmailAddress"
+        android:id="@+id/changeEmailAddress"
         android:layout_width="360dp"
-        android:layout_height="31dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
@@ -116,51 +115,50 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileChildgender" />
+        app:layout_constraintTop_toBottomOf="@+id/changeChildAge" />
 
     <EditText
-        android:id="@+id/profilePhoneNo"
-        android:layout_width="360dp"
-        android:layout_height="32dp"
+        android:id="@+id/changePhoneNo"
+        android:layout_width="167dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="Phone"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/changeChildgender" />
 
     <EditText
-        android:id="@+id/profileAddress"
+        android:id="@+id/changeAddress"
         android:layout_width="360dp"
-        android:layout_height="32dp"
+        android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="Address"
-        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePhoneNo" />
+        app:layout_constraintTop_toBottomOf="@+id/changeEmailAddress" />
 
     <EditText
-        android:id="@+id/postRequirement"
+        android:id="@+id/changeRequirement"
         android:layout_width="360dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="Write your requirment for babysitter"
-        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/changeAddress" />
 
 
     <Button
@@ -169,7 +167,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:background="#D2B4DE"
-        android:text="UPDATE"
+        android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
