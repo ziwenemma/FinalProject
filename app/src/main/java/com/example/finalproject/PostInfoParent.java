@@ -96,7 +96,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
         final String sId = sharedPreferences.getString("id", "");
         if (!TextUtils.isEmpty(sId)) {
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ParentInfo");
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
