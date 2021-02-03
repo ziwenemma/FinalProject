@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -49,7 +51,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
-    DatabaseReference   mDatabase;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -143,11 +144,13 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
             });
         }
 
-        String Id = mDatabase.push().getKey();
+
 
 
 
         btn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
             @Override
             public void onClick(View v) {
                 if(changeParentName.getText().toString().isEmpty()|| changeChildName.getText().toString().isEmpty()||changeChildAge.getText().toString().isEmpty()
@@ -174,6 +177,17 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         edited.put("Requirement",changeRequirement.getText().toString());
                         edited.put("Gender",changeGender.getText().toString());
 
+
+                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                        String Id = mDatabase.push().getKey();
+                        Information user = new Information(Id,changeParentName.getText().toString(),changeChildName.getText().toString(),changeChildAge.getText().toString(),changeChildNum.getText().toString(),
+                                changeEmailAdd.getText().toString(),changePhone.getText().toString(),changeAdd.getText().toString(),changeRequirement.getText().toString(),changeGender.getText().toString());
+                        mDatabase.child("Parent Post").child(fAuth.getCurrentUser().getUid()).child(Objects.requireNonNull(Id)).setValue(user);
+
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("id", Id);
+                        editor.apply();
+
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -184,8 +198,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         });
 
 
-                        Toast.makeText(PostInfoParent.this,"Changed",Toast.LENGTH_SHORT).show();
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -195,14 +207,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                 });
 
 
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                String Id = mDatabase.push().getKey();
-                Information user = new Information(Id,ParentName,ChildAge,ChildName,ChildNum,EmailAdd,Phone,Add,Requirement,gender);
-                mDatabase.child("Parent Post").child(fAuth.getCurrentUser().getUid()).child(Objects.requireNonNull(Id)).setValue(user);
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("id", Id);
-                editor.apply();
 
 
             }
