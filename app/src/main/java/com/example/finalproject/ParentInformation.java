@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,6 +25,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -32,10 +41,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-public class ParentInformation extends AppCompatActivity {
+public class ParentInformation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView Gender,ParentName,ChildName,ChildAge,ChildNum,EmailAdd,Phone,Add,Requirement;
     ImageView ImageView;
     Button btn;
@@ -44,6 +54,8 @@ public class ParentInformation extends AppCompatActivity {
     String userId;
     FirebaseUser user;
     StorageReference storageReference;
+    DatabaseReference   mDatabase;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -68,6 +80,7 @@ public class ParentInformation extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
         ImageView=findViewById(R.id.ImageView);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -107,10 +120,46 @@ public class ParentInformation extends AppCompatActivity {
         });
 
 
+        //realtime database
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        final String sId = sharedPreferences.getString("id", "");
+        if (!TextUtils.isEmpty(sId)) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ParentInfo");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        Information information = dataSnapshot.getValue(Information.class);
+
+                        if (TextUtils.equals(information.getId(), sId)) {
+                            ParentName.setText(information.getParentName());
+                            ChildName.setText(information.getChildName());
+                            ChildAge.setText(information.getChildAge());
+                            ChildNum.setText(information.getChildNum());
+                            EmailAdd.setText(information.getEmail());
+                            Add.setText(information.getAddress());
+                            Phone.setText(information.getPhone());
+                            Requirement.setText(information.getRequirement());
+                            Gender.setText(information.getGender());
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
+
+        String Id = mDatabase.push().getKey();
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(v.getContext(),PostInfoParent.class);
                 i.putExtra("ParentName",ParentName.getText().toString());
                 i.putExtra("ChildName",ChildName.getText().toString());
@@ -122,6 +171,19 @@ public class ParentInformation extends AppCompatActivity {
                 i.putExtra("Requirement",Requirement.getText().toString());
                 i.putExtra("Gender",Gender.getText().toString());
 
+
+
+
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                String Id = mDatabase.push().getKey();
+                Information user = new Information(Id, ParentName.getText().toString(), ChildName.getText().toString(), ChildAge.getText().toString(),
+                        ChildNum.getText().toString(),Phone.getText().toString(),EmailAdd.getText().toString(),Add.getText().toString(),Requirement.getText().toString()
+                        ,Gender.getText().toString());
+                mDatabase.child("Parent Post").child(fAuth.getCurrentUser().getUid()).child(Objects.requireNonNull(Id)).setValue(user);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("id", Id);
+                editor.apply();
 
                 startActivity(i);
 
@@ -136,6 +198,22 @@ public class ParentInformation extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                               int position,
+                               long id) {
 
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
 

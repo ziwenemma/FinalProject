@@ -144,6 +144,8 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+
+
         changeProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
