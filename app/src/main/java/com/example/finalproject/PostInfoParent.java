@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class PostInfoParent extends AppCompatActivity{
+public class PostInfoParent extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Button btn;
 
     public static final String TAG = "TAG";
@@ -49,6 +50,7 @@ public class PostInfoParent extends AppCompatActivity{
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -90,6 +92,39 @@ public class PostInfoParent extends AppCompatActivity{
 
         btn=findViewById(R.id.UpdateParentInfo);
 
+//realtime database
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        final String sId = sharedPreferences.getString("id", "");
+        if (!TextUtils.isEmpty(sId)) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ParentInfo");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        Information information = dataSnapshot.getValue(Information.class);
+
+                        if (TextUtils.equals(information.getId(), sId)) {
+                            changeParentName.setText(information.getParentName());
+                            changeChildName.setText(information.getChildName());
+                            changeChildAge.setText(information.getChildAge());
+                            changeChildNum.setText(information.getChildNum());
+                            changeEmailAdd.setText(information.getEmail());
+                            changeAdd.setText(information.getAddress());
+                            changePhone.setText(information.getPhone());
+                            changeRequirement.setText(information.getRequirement());
+                            changeGender.setText(information.getGender());
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
 
 
 
@@ -123,10 +158,20 @@ public class PostInfoParent extends AppCompatActivity{
                     return;
                 }
 
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
+                String Id = mDatabase.push().getKey();
+                Information information = new Information(Id,ParentName,ChildAge,ChildName,ChildNum,EmailAdd,Phone,Add,Requirement,gender);
+                mDatabase.child("ParentPost").child(fAuth.getCurrentUser().getUid()).setValue(information);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("id", Id);
+                editor.apply();
+
                 String email= changeEmailAdd.getText().toString();
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+
+
                         DocumentReference docRef=fStore.collection("parentuser").document(user.getUid());
                         Map<String,Object> edited = new HashMap<>();
                         edited.put("email",email);
@@ -186,5 +231,24 @@ public class PostInfoParent extends AppCompatActivity{
             }
         }
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                               int position,
+                               long id) {
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
 
 }

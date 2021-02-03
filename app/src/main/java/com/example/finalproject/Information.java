@@ -1,23 +1,31 @@
 package com.example.finalproject;
 
 public class Information {
-    public Information(String parentName, String childName, String childAge, String childNum, String add, String phone, String emailAdd, String requirement) {
-
+    public Information(){
     }
 
 
-    String parentName, childName,ChildAge,ChildNum,Address,Phone,Email,Requirement,gender;
+    String id, parentName, childName,ChildAge,ChildNum,Address,Phone,Email,Requirement,gender;
 
-    public Information(String parentName, String childName, String childAge, String childNum, String address, String phone, String email, String requirement, String gender) {
+    public Information(String id, String parentName, String childName, String childAge, String childNum, String address, String phone, String email, String requirement, String gender) {
         this.parentName = parentName;
         this.childName = childName;
-        ChildAge = childAge;
-        ChildNum = childNum;
-        Address = address;
-        Phone = phone;
-        Email = email;
-        Requirement = requirement;
+        this.ChildAge = childAge;
+        this.ChildNum = childNum;
+        this.Address = address;
+        this.Phone = phone;
+        this.Email = email;
+        this.Requirement = requirement;
         this.gender = gender;
+        this.id=id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getParentName() {
