@@ -1,16 +1,15 @@
 package com.example.finalproject;
 
 public class Information {
-    public Information() {
+    public Information(String parentName, String childName, String childAge, String childNum, String add, String phone, String emailAdd, String requirement) {
 
     }
 
 
-    String id,parentName, childName,ChildAge,ChildNum,Address,Phone,Email,Requirement,gender;
+    String parentName, childName,ChildAge,ChildNum,Address,Phone,Email,Requirement,gender;
 
-    public Information(String id,String parentName, String childName, String childAge, String childNum, String address, String phone, String email, String requirement, String gender) {
+    public Information(String parentName, String childName, String childAge, String childNum, String address, String phone, String email, String requirement, String gender) {
         this.parentName = parentName;
-        this.id = id;
         this.childName = childName;
         ChildAge = childAge;
         ChildNum = childNum;
@@ -19,14 +18,6 @@ public class Information {
         Email = email;
         Requirement = requirement;
         this.gender = gender;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getParentName() {

@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -9,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -41,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class PostInfoParent extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class PostInfoParent extends AppCompatActivity{
     Button btn;
 
     public static final String TAG = "TAG";
@@ -51,7 +49,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
-    SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +68,12 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         String  Requirement= data.getStringExtra("Requirement");
         String  gender= data.getStringExtra("Gender");
 
-
         fAuth =FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
         user= fAuth.getCurrentUser();
+
+
+        String userID=user.getUid();
         storageReference= FirebaseStorage.getInstance().getReference();
         changeImageView=findViewById(R.id.changeImageView);
 
@@ -89,6 +89,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         changeRequirement=findViewById(R.id.changeRequirement);
 
         btn=findViewById(R.id.UpdateParentInfo);
+
 
 
 
@@ -110,47 +111,8 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         });
 
 
-        //realtime database
-        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
-        final String sId = sharedPreferences.getString("id", "");
-        if (!TextUtils.isEmpty(sId)) {
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ParentInfo");
-
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-
-
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                        Information information = dataSnapshot.getValue(Information.class);
-
-                        if (TextUtils.equals(information.getId(), sId)) {
-                            changeParentName.setText(information.getParentName());
-                            changeChildName.setText(information.getChildName());
-                            changeChildAge.setText(information.getChildAge());
-                            changeChildNum.setText(information.getChildNum());
-                            changeEmailAdd.setText(information.getEmail());
-                            changeAdd.setText(information.getAddress());
-                            changePhone.setText(information.getPhone());
-                            changeRequirement.setText(information.getRequirement());
-                            changeGender.setText(information.getGender());
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                }
-            });
-        }
-
-
-
-
 
         btn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-
             @Override
             public void onClick(View v) {
                 if(changeParentName.getText().toString().isEmpty()|| changeChildName.getText().toString().isEmpty()||changeChildAge.getText().toString().isEmpty()
@@ -177,17 +139,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         edited.put("Requirement",changeRequirement.getText().toString());
                         edited.put("Gender",changeGender.getText().toString());
 
-
-                        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-                        String Id = mDatabase.push().getKey();
-                        Information user = new Information(Id,changeParentName.getText().toString(),changeChildName.getText().toString(),changeChildAge.getText().toString(),changeChildNum.getText().toString(),
-                                changeEmailAdd.getText().toString(),changePhone.getText().toString(),changeAdd.getText().toString(),changeRequirement.getText().toString(),changeGender.getText().toString());
-                        mDatabase.child("Parent Post").child(fAuth.getCurrentUser().getUid()).child(Objects.requireNonNull(Id)).setValue(user);
-
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("id", Id);
-                        editor.apply();
-
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -196,8 +147,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                                 finish();
                             }
                         });
-
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -205,10 +154,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         Toast.makeText(PostInfoParent.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
-
 
             }
         });
@@ -232,34 +177,14 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1000){
-            if(resultCode== Activity.RESULT_OK){
-                Uri imageUri=data.getData();
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri imageUri = data.getData();
                 changeImageView.setImageURI(imageUri);
-
 
 
             }
         }
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> arg0, View arg1,
-                               int position,
-                               long id) {
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
 
 }
