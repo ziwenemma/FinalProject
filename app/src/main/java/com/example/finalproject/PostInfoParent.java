@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,6 +24,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,8 +37,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-public class PostInfoParent extends AppCompatActivity {
+public class PostInfoParent extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     Button btn;
 
     public static final String TAG = "TAG";
@@ -39,6 +49,8 @@ public class PostInfoParent extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
+    DatabaseReference   mDatabase;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +109,42 @@ public class PostInfoParent extends AppCompatActivity {
         });
 
 
+        //realtime database
+        sharedPreferences = getSharedPreferences("MyPREFERENCES", Context.MODE_PRIVATE);
+        final String sId = sharedPreferences.getString("id", "");
+        if (!TextUtils.isEmpty(sId)) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ParentInfo");
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                        Information information = dataSnapshot.getValue(Information.class);
+
+                        if (TextUtils.equals(information.getId(), sId)) {
+                            changeParentName.setText(information.getParentName());
+                            changeChildName.setText(information.getChildName());
+                            changeChildAge.setText(information.getChildAge());
+                            changeChildNum.setText(information.getChildNum());
+                            changeEmailAdd.setText(information.getEmail());
+                            changeAdd.setText(information.getAddress());
+                            changePhone.setText(information.getPhone());
+                            changeRequirement.setText(information.getRequirement());
+                            changeGender.setText(information.getGender());
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
+
+        String Id = mDatabase.push().getKey();
+
 
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +195,16 @@ public class PostInfoParent extends AppCompatActivity {
                 });
 
 
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                String Id = mDatabase.push().getKey();
+                Information user = new Information(Id,ParentName,ChildAge,ChildName,ChildNum,EmailAdd,Phone,Add,Requirement,gender);
+                mDatabase.child("Parent Post").child(fAuth.getCurrentUser().getUid()).child(Objects.requireNonNull(Id)).setValue(user);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("id", Id);
+                editor.apply();
+
+
             }
         });
 
@@ -178,6 +236,24 @@ public class PostInfoParent extends AppCompatActivity {
 
             }
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                               int position,
+                               long id) {
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
 
