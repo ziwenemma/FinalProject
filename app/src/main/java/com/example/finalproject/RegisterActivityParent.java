@@ -105,6 +105,15 @@ public class RegisterActivityParent extends AppCompatActivity {
                             user.put("fName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("ParentName","");
+                            user.put("ChildName","");
+                            user.put("ChildAge","");
+                            user.put("ChildNum","");
+                            user.put("Address","");
+                            user.put("ParentPhone","");
+                            user.put("Requirement","");
+                            user.put("Gender","");
+
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
 
                                 @Override

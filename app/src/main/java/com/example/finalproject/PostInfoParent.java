@@ -50,8 +50,8 @@ public class PostInfoParent extends AppCompatActivity {
         String ParentName =data.getStringExtra("ParentName");
         String ChildName=data.getStringExtra("ChildName");
         String ChildAge = data.getStringExtra("ChildAge");
-        String ChildNum =data.getStringExtra("ChilDNum");
-        String EmailAdd=data.getStringExtra("InfoEmail");
+        String ChildNum =data.getStringExtra("ChildNum");
+        String EmailAdd=data.getStringExtra("email");
         String  Phone= data.getStringExtra("ParentPhone");
         String Add=data.getStringExtra("Address");
         String  Requirement= data.getStringExtra("Requirement");
@@ -75,7 +75,7 @@ public class PostInfoParent extends AppCompatActivity {
         changeAdd=findViewById(R.id.changeAddress);
         changeRequirement=findViewById(R.id.changeRequirement);
 
-        btn=findViewById(R.id.ChangeParentInfo);
+        btn=findViewById(R.id.UpdateParentInfo);
 
 
 
@@ -103,26 +103,25 @@ public class PostInfoParent extends AppCompatActivity {
                 if(changeParentName.getText().toString().isEmpty()|| changeChildName.getText().toString().isEmpty()||changeChildAge.getText().toString().isEmpty()
                         ||changeChildNum.getText().toString().isEmpty()|| changeEmailAdd.getText().toString().isEmpty()||changeAdd.getText().toString().isEmpty()
                         ||changePhone.getText().toString().isEmpty()|| changeAdd.getText().toString().isEmpty()||changeRequirement.getText().toString().isEmpty()||
-                         changeGender.getText().toString().isEmpty()){
+                        changeGender.getText().toString().isEmpty()){
                     Toast.makeText(PostInfoParent.this, "One or many Fields are empty", Toast.LENGTH_SHORT);
                     return;
                 }
 
-                String changeemail= changeEmailAdd.getText().toString();
-                user.updateEmail(changeemail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                String email= changeEmailAdd.getText().toString();
+                user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         DocumentReference docRef=fStore.collection("parentuser").document(user.getUid());
                         Map<String,Object> edited = new HashMap<>();
-                        edited.put("ParentEmail",changeemail);
+                        edited.put("email",email);
                         edited.put("ParentName",changeParentName.getText().toString());
                         edited.put("ChildName",changeChildName.getText().toString());
                         edited.put("ChildAge",changeChildAge.getText().toString());
                         edited.put("ChildNum",changeChildNum.getText().toString());
-                        edited.put("ParentEmail",changeEmailAdd.getText().toString());
                         edited.put("ParentPhone",changePhone.getText().toString());
                         edited.put("Address",changeAdd.getText().toString());
-                        edited.put("Requirment",changeRequirement.getText().toString());
+                        edited.put("Requirement",changeRequirement.getText().toString());
                         edited.put("Gender",changeGender.getText().toString());
 
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -161,7 +160,7 @@ public class PostInfoParent extends AppCompatActivity {
 
 
         Log.d(TAG, "onCreate" + ParentName + " "  + ChildAge + " " + ChildName+" "+ChildNum+" "+EmailAdd
-        +" "+Phone+" "+Add+" "+Requirement+" "+gender);
+                +" "+Phone+" "+Add+" "+Requirement+" "+gender);
 
     }
 
@@ -178,4 +177,6 @@ public class PostInfoParent extends AppCompatActivity {
             }
         }
     }
+
+
 }

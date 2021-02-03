@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".PostInfoParent">
+    tools:context=".ParentInformation">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -163,6 +163,7 @@
         android:layout_marginBottom="32dp"
         android:background="#D2B4DE"
         android:text="CHANGE"
+        android:onClick="updateProfile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
