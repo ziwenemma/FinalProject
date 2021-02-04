@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   tools:context=".BabysitterDetail">
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="260dp"
+       android:scaleType="fitCenter"
+       android:src="@drawable/image_person"
+       android:id="@+id/babysitter_image_de"
+       />
+
+   <TextView
+       android:id="@+id/name_de"
+       android:layout_width="159dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_image_de"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="57dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="224dp"
+       android:gravity="center"
+       android:text="Name"
+       android:textSize="18sp" />
+
+   <TextView
+       android:id="@+id/babysitter_name_de"
+       android:layout_width="178dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_image_de"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="217dp"
+       android:layout_marginLeft="60dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="63dp"
+       android:layout_toRightOf="@+id/name_de"
+       android:gravity="center"
+       android:text="Emma"
+       android:background="#ccccff"
+       android:textColor="#000000"
+       android:textSize="18sp" />
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_name_de"
+       android:text="Age:"
+       android:textSize="15sp"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="57dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="224dp"
+       android:id="@+id/age_de"
+       android:gravity="center"
+       />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_name_de"
+       android:text="40"
+       android:textSize="18sp"
+       android:id="@+id/babysitte_age_de"
+       android:gravity="center"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="217dp"
+       android:layout_marginLeft="60dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="63dp"
+       android:background="#ccccff"
+       android:textColor="#000000"
+       android:layout_toRightOf="@+id/age_de"
+
+       />
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitte_age_de"
+       android:text="City:"
+       android:textSize="15sp"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="57dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="224dp"
+       android:id="@+id/city_de"
+       android:gravity="center"
+       />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/age_de"
+       android:text="Montreal"
+       android:textSize="18sp"
+       android:id="@+id/babysitte_city_de"
+       android:gravity="center"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="217dp"
+       android:layout_marginLeft="60dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="63dp"
+       android:background="#ccccff"
+       android:textColor="#000000"
+       android:layout_toRightOf="@+id/city_de"
+
+       />
+
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:layout_below="@+id/city_de"
+       android:text="description:  "
+       android:textSize="18sp"
+       android:id="@+id/babysitte_des_de"
+       android:gravity="center"
+       android:layout_marginTop="10dp"
+       />
+
+
+
+   <TextView
+       android:layout_width="100dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitte_des_de"
+       android:text="$30/hour"
+       android:background="#ffccff"
+       android:textSize="20sp"
+       android:id="@+id/babysitter_rate_de"
+       android:gravity="center"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="10dp"
+       />
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_rate_de"
+       android:text="phone:"
+       android:textSize="15sp"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="57dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="224dp"
+       android:id="@+id/phone_de"
+       android:gravity="center"
+       />
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/babysitter_rate_de"
+       android:text="1234567"
+       android:textSize="18sp"
+       android:id="@+id/babysitter_ph_de"
+       android:gravity="center"
+       android:layout_alignParentStart="true"
+       android:layout_alignParentEnd="true"
+       android:layout_marginStart="217dp"
+       android:layout_marginLeft="60dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="63dp"
+       android:background="#ccccff"
+       android:textColor="#000000"
+       android:layout_toRightOf="@+id/phone_de"
+       />
+
+
+   <Button
+       android:layout_width="250dp"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/phone_de"
+       android:text="Make an appointment"
+       android:textSize="18sp"
+       android:id="@+id/cartbtn"
+       android:layout_centerHorizontal="true"
+       android:gravity="center"
+       android:layout_marginTop="15dp"/>
+</RelativeLayout>
