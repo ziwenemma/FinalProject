@@ -22,10 +22,11 @@
        android:layout_alignParentStart="true"
        android:layout_alignParentEnd="true"
        android:layout_marginStart="57dp"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="15dp"
        android:layout_marginEnd="224dp"
        android:gravity="center"
        android:text="Name"
+       android:background="@drawable/border"
        android:textSize="18sp" />
 
    <TextView
@@ -37,7 +38,7 @@
        android:layout_alignParentEnd="true"
        android:layout_marginStart="217dp"
        android:layout_marginLeft="60dp"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="15dp"
        android:layout_marginEnd="63dp"
        android:layout_toRightOf="@+id/name_de"
        android:gravity="center"
@@ -59,6 +60,8 @@
        android:layout_marginEnd="224dp"
        android:id="@+id/age_de"
        android:gravity="center"
+       android:background="@drawable/border"
+
        />
    <TextView
        android:layout_width="match_parent"
@@ -93,6 +96,8 @@
        android:layout_marginEnd="224dp"
        android:id="@+id/city_de"
        android:gravity="center"
+       android:background="@drawable/border"
+
        />
    <TextView
        android:layout_width="match_parent"
@@ -117,12 +122,15 @@
 
    <TextView
        android:layout_width="match_parent"
+       android:layout_marginLeft="60dp"
+       android:layout_marginRight="60dp"
        android:layout_height="50dp"
        android:layout_below="@+id/city_de"
        android:text="description:  "
        android:textSize="18sp"
        android:id="@+id/babysitte_des_de"
        android:gravity="center"
+       android:background="@drawable/border"
        android:layout_marginTop="10dp"
        />
 
@@ -154,6 +162,7 @@
        android:layout_marginEnd="224dp"
        android:id="@+id/phone_de"
        android:gravity="center"
+       android:background="@drawable/border"
        />
    <TextView
        android:layout_width="match_parent"
@@ -184,5 +193,6 @@
        android:id="@+id/cartbtn"
        android:layout_centerHorizontal="true"
        android:gravity="center"
+       android:background="#e0e0e0"
        android:layout_marginTop="15dp"/>
 </RelativeLayout>
