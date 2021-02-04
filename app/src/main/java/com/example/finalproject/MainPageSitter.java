@@ -70,6 +70,10 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
         else if (id==R.id.nav_about){
             startActivity(new Intent(getApplicationContext(),AboutUs.class));
         }
+        else if (id==R.id.nav_add_my_profile){
+            startActivity(new Intent(getApplicationContext(),post_my_profile
+                    .class));
+        }
         else if (id==R.id.nav_profile){
             startActivity(new Intent(getApplicationContext(),ProfileActivitySitter.class));
         }

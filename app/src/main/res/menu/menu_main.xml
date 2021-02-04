@@ -26,6 +26,11 @@
         <item android:title="Profile">
             <menu>
                 <item
+                    android:id="@+id/nav_add_my_profile"
+                    android:icon="@drawable/post_profile"
+                    android:title="Post my Profile"></item>
+
+                <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/login_icon"
                     android:title="Login"></item>
