@@ -7,16 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".post_my_profile">
 
-    <include
-        android:id="@+id/update_profile_toolbar"
-        layout="@layout/toolbar" />
-
-    <ImageButton
+    <ImageView
         android:id="@+id/imageButton"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="95dp"
-        android:layout_marginVertical="86dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/select_photo" />
 
@@ -25,7 +24,7 @@
         android:layout_width="186dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="240dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Your Full Name"
@@ -36,29 +35,62 @@
         app:layout_constraintTop_toBottomOf="@+id/changeImageView" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/changeSitterAge"
+        android:layout_width="186dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Your Age"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/changeSitterName" />
+
+
+    <EditText
+        android:id="@+id/sitteremail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Email address"
         android:inputType="text"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/changeSitterAge"/>
+
+    <EditText
+        android:id="@+id/sitterphone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Phone number"
+        android:inputType="text"
+        android:textSize="20sp"
+        android:layout_below="@+id/sitteremail"/>
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="420dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/gendersitter"
+        android:layout_below="@+id/sitterphone">
 
         <TextView
             android:id="@+id/genderBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gender: "
+
             android:textSize="20sp">
 
         </TextView>
@@ -80,12 +112,39 @@
             android:textSize="20sp" />
     </RadioGroup>
 
+
+    <EditText
+        android:id="@+id/sitter_city_ed"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gendersitter"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="City"
+        android:inputType="textMultiLine" />
+
+    <EditText
+        android:id="@+id/sitter_rate_ed"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gendersitter"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/sitter_city_ed"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Rate/hour"
+        android:inputType="textMultiLine" />
+
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:layout_width="395dp"
-        android:layout_height="136dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/sitter_city_ed"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Description about yourself"
@@ -96,7 +155,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="620dp"
+        android:layout_below="@id/editTextTextMultiLine"
+        android:layout_marginTop="10dp"
         android:text="Update My Profile"
         android:background="#D2B4DE"/>
 
