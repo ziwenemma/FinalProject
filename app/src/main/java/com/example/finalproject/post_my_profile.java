@@ -17,8 +17,6 @@ public class  post_my_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_my_profile);
 
-
-        mtoolbar= (Toolbar) findViewById(R.id.update_profile_toolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

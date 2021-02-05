@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <item
+        android:id="@+id/Post_info_sitter"
+        android:title="Home"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/sitterprofile"/>
+
+
+    <item
+        android:title="Requests"
+        android:id="@+id/Request"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/request"/>
+
+</menu>

@@ -46,7 +46,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 public class ParentInformation extends AppCompatActivity  {
-    TextView Gender,ParentName,ChildName,ChildAge,ChildNum,EmailAdd,Phone,Add,Requirement;
+    TextView Gender,ParentName,ChildAge,EmailAdd,Phone,Add,Requirement;
     ImageView ImageView;
     Button btn;
     FirebaseAuth fAuth;
@@ -68,8 +68,6 @@ public class ParentInformation extends AppCompatActivity  {
 
         Gender=findViewById(R.id.Childgender);
         ParentName = findViewById(R.id.ParentName);
-        ChildName=findViewById(R.id.ChildName);
-        ChildNum=findViewById(R.id.pChildnum);
         ChildAge = findViewById(R.id.ChildAge);
         EmailAdd =findViewById(R.id.EmailAddress);
         Phone=findViewById(R.id.PhoneNo);
@@ -103,9 +101,7 @@ public class ParentInformation extends AppCompatActivity  {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot.exists()){
                     ParentName.setText(documentSnapshot.getString("ParentName"));
-                    ChildName.setText(documentSnapshot.getString("ChildName"));
                     ChildAge.setText(documentSnapshot.getString("ChildAge"));
-                    ChildNum.setText(documentSnapshot.getString("ChildNum"));
                     Phone.setText(documentSnapshot.getString("ParentPhone"));
                     EmailAdd.setText(documentSnapshot.getString("email"));
                     Add.setText(documentSnapshot.getString("Address"));
@@ -127,9 +123,7 @@ public class ParentInformation extends AppCompatActivity  {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(),PostInfoParent.class);
                 i.putExtra("ParentName",ParentName.getText().toString());
-                i.putExtra("ChildName",ChildName.getText().toString());
                 i.putExtra("ChildAge",ChildAge.getText().toString());
-                i.putExtra("ChildNum",ChildNum.getText().toString());
                 i.putExtra("ParentPhone",Phone.getText().toString());
                 i.putExtra("email",EmailAdd.getText().toString());
                 i.putExtra("Address",Add.getText().toString());

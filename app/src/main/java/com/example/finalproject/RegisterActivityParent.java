@@ -48,10 +48,7 @@ public class RegisterActivityParent extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainPageParent.class));
-            finish();
-        }
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
 
@@ -106,9 +103,7 @@ public class RegisterActivityParent extends AppCompatActivity {
                             user.put("email", email);
                             user.put("phone", phone);
                             user.put("ParentName","");
-                            user.put("ChildName","");
                             user.put("ChildAge","");
-                            user.put("ChildNum","");
                             user.put("Address","");
                             user.put("ParentPhone","");
                             user.put("Requirement","");

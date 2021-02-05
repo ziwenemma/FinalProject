@@ -48,10 +48,6 @@ public class RegisterActivitySitter extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
-        if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainPageSitter.class));
-            finish();
-        }
 
         signupButton.setOnClickListener(new View.OnClickListener() {
 

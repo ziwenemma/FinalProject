@@ -61,9 +61,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
         Intent data =getIntent();
         String ParentName =data.getStringExtra("ParentName");
-        String ChildName=data.getStringExtra("ChildName");
         String ChildAge = data.getStringExtra("ChildAge");
-        String ChildNum =data.getStringExtra("ChildNum");
         String EmailAdd=data.getStringExtra("email");
         String  Phone= data.getStringExtra("ParentPhone");
         String Add=data.getStringExtra("Address");
@@ -82,8 +80,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
         changeGender=findViewById(R.id.changeChildgender);
         changeParentName = findViewById(R.id.changeParentName);
-        changeChildName=findViewById(R.id.changeChildName);
-        changeChildNum=findViewById(R.id.changeChildnum);
         changeChildAge = findViewById(R.id.changeChildAge);
         changeEmailAdd =findViewById(R.id.changeEmailAddress);
         changePhone=findViewById(R.id.changePhoneNo);
@@ -109,9 +105,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
                         if (TextUtils.equals(information.getId(), sId)) {
                             changeParentName.setText(information.getParentName());
-                            changeChildName.setText(information.getChildName());
                             changeChildAge.setText(information.getChildAge());
-                            changeChildNum.setText(information.getChildNum());
                             changeEmailAdd.setText(information.getEmail());
                             changeAdd.setText(information.getAddress());
                             changePhone.setText(information.getPhone());
@@ -150,8 +144,8 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(changeParentName.getText().toString().isEmpty()|| changeChildName.getText().toString().isEmpty()||changeChildAge.getText().toString().isEmpty()
-                        ||changeChildNum.getText().toString().isEmpty()|| changeEmailAdd.getText().toString().isEmpty()||changeAdd.getText().toString().isEmpty()
+                if(changeParentName.getText().toString().isEmpty()|| changeChildAge.getText().toString().isEmpty()
+                        ||changeEmailAdd.getText().toString().isEmpty()||changeAdd.getText().toString().isEmpty()
                         ||changePhone.getText().toString().isEmpty()|| changeAdd.getText().toString().isEmpty()||changeRequirement.getText().toString().isEmpty()||
                         changeGender.getText().toString().isEmpty()){
                     Toast.makeText(PostInfoParent.this, "One or many Fields are empty", Toast.LENGTH_SHORT);
@@ -169,9 +163,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         Map<String,Object> edited = new HashMap<>();
                         edited.put("email",email);
                         edited.put("ParentName",changeParentName.getText().toString());
-                        edited.put("ChildName",changeChildName.getText().toString());
                         edited.put("ChildAge",changeChildAge.getText().toString());
-                        edited.put("ChildNum",changeChildNum.getText().toString());
                         edited.put("ParentPhone",changePhone.getText().toString());
                         edited.put("Address",changeAdd.getText().toString());
                         edited.put("Requirement",changeRequirement.getText().toString());
@@ -186,8 +178,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                                 DatabaseReference mDatabase = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
                                 String Id = mDatabase.push().getKey();
                                 Information information = new Information(Id,changeParentName.getText().toString(),
-                                        changeChildName.getText().toString(),
-                                        changeChildAge.getText().toString(),changeChildNum.getText().toString(),
+                                        changeChildAge.getText().toString(),
                                         email,changePhone.getText().toString(),changeAdd.getText().toString(),changeRequirement.getText().toString(),changeGender.getText().toString());
                                 mDatabase.child("ParentPost").child(fAuth.getCurrentUser().getUid()).setValue(information);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -212,8 +203,6 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
         changeParentName.setText(ParentName);
         changeChildAge.setText(ChildAge);
-        changeChildName.setText(ChildName);
-        changeChildNum.setText(ChildNum);
         changeEmailAdd.setText(EmailAdd);
         changePhone.setText(Phone);
         changeAdd.setText(Add);
@@ -221,7 +210,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         changeGender.setText(gender);
 
 
-        Log.d(TAG, "onCreate" + ParentName + " "  + ChildAge + " " + ChildName+" "+ChildNum+" "+EmailAdd
+        Log.d(TAG, "onCreate" + ParentName + " "  + ChildAge + " " +EmailAdd
                 +" "+Phone+" "+Add+" "+Requirement+" "+gender);
 
     }

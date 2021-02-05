@@ -30,10 +30,10 @@
 
     <EditText
         android:id="@+id/changeParentName"
-        android:layout_width="186dp"
-        android:layout_height="38dp"
+        android:layout_width="360dp"
+        android:layout_height="39dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Your Name"
@@ -43,64 +43,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/changeImageView" />
 
-    <EditText
-        android:id="@+id/changeChildName"
-        android:layout_width="168dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="Child Name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeImageView" />
-
 
     <EditText
         android:id="@+id/changeChildAge"
-        android:layout_width="177dp"
-        android:layout_height="38dp"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Child Age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
-
-    <EditText
-        android:id="@+id/changeChildnum"
-        android:layout_width="186dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="how many children"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/changeParentName" />
 
     <EditText
         android:id="@+id/changeChildgender"
-        android:layout_width="169dp"
-        android:layout_height="38dp"
+        android:layout_width="182dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="child gender"
+        android:hint="Child gender"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintLeft_toRightOf="@+id/changeChildAge"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/changeParentName" />
 
     <EditText
         android:id="@+id/changeEmailAddress"
@@ -118,8 +89,8 @@
 
     <EditText
         android:id="@+id/changePhoneNo"
-        android:layout_width="167dp"
-        android:layout_height="38dp"
+        android:layout_width="360dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
@@ -129,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeChildgender" />
+        app:layout_constraintTop_toBottomOf="@+id/changeEmailAddress" />
 
     <EditText
         android:id="@+id/changeAddress"
@@ -143,12 +114,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/changePhoneNo" />
 
     <EditText
         android:id="@+id/changeRequirement"
         android:layout_width="360dp"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
@@ -164,7 +135,7 @@
         android:id="@+id/UpdateParentInfo"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:background="#D2B4DE"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"

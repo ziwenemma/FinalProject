@@ -9,13 +9,231 @@
     tools:showIn="@layout/toolbar"
     app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Main page sitter"
-        />
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:text="MyPostProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:id="@+id/texttitle"
+        android:gravity="center"/>
 
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="540dp"
+        android:layout_marginTop="65dp"
+        app:layout_constraintTop_toBottomOf="@+id/texttitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/cardview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/sitter_image"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/image_person" />
+
+            <TextView
+                android:id="@+id/sittername"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sitter_image"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="224dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="Name"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/sitter_name"
+                android:layout_width="178dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sitter_image"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="217dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="63dp"
+                android:layout_toRightOf="@+id/sittername"
+                android:background="#ccccff"
+                android:gravity="center"
+                android:text="Emma"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/age_de"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sitter_name"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="224dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="Age:"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/babysitte_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sittername"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="217dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="63dp"
+                android:layout_toRightOf="@+id/age_de"
+                android:background="#ccccff"
+                android:gravity="center"
+                android:text="40"
+                android:textColor="#000000"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
+                android:id="@+id/sittercity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/age_de"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="224dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="City:"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/babysitte_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/age_de"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="217dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="63dp"
+                android:layout_toRightOf="@+id/sittercity"
+                android:background="#ccccff"
+                android:gravity="center"
+                android:text="Montreal"
+                android:textColor="#000000"
+                android:textSize="18sp"
+
+                />
+
+
+            <TextView
+                android:id="@+id/babysitte_des"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/sittercity"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="description:  "
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/babysitter_rate"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/babysitte_des"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="#ffccff"
+                android:gravity="center"
+                android:text="$30/hour"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/phone_sitter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/babysitter_rate"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="224dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:text="phone:"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/babysitter_ph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/babysitter_rate"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="217dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="63dp"
+                android:layout_toRightOf="@+id/phone_sitter"
+                android:background="#ccccff"
+                android:gravity="center"
+                android:text="1234567"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+
+            <Button
+                android:id="@+id/sitterupdateto"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone_sitter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="#e0e0e0"
+                android:gravity="center"
+                android:text="Update it"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bttom_bar_sitter"
+        app:menu="@menu/bottom_menu_sitter"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

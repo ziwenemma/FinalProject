@@ -32,6 +32,7 @@ public class LoginActivitySitter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_sitter);
 
+
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password_sitter);
         loginButton = (Button) findViewById(R.id.loginButton_sitter);

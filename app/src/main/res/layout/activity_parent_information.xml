@@ -29,62 +29,81 @@
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
+        android:id="@+id/p_Name"
+        android:layout_width="139dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:text="Parent Name:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/ParentName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImageView" />
+
+    <TextView
         android:id="@+id/ParentName"
         android:layout_width="186dp"
         android:layout_height="30dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Your Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ImageView" />
+
 
     <TextView
-        android:id="@+id/ChildName"
-        android:layout_width="168dp"
-        android:layout_height="30dp"
+        android:id="@+id/C_Age"
+        android:layout_width="136dp"
+        android:layout_height="31dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
         android:ems="10"
-        android:hint="Child Name"
+        android:text="Child Age:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintLeft_toRightOf="@+id/ChildAge"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ImageView" />
-
 
     <TextView
         android:id="@+id/ChildAge"
         android:layout_width="177dp"
         android:layout_height="30dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Child Age"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.994"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/ParentName" />
 
     <TextView
-        android:id="@+id/pChildnum"
-        android:layout_width="186dp"
-        android:layout_height="26dp"
+        android:id="@+id/C_gender"
+        android:layout_width="137dp"
+        android:layout_height="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/border"
         android:ems="10"
-        android:hint="how many children"
+        android:text="Child Gender:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChildName" />
+        app:layout_constraintTop_toBottomOf="@+id/ChildAge" />
 
     <TextView
         android:id="@+id/Childgender"
@@ -94,11 +113,12 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="children gender"
+        android:hint="boy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChildName" />
+        app:layout_constraintLeft_toRightOf="@+id/C_gender"
+        app:layout_constraintTop_toBottomOf="@+id/ChildAge" />
 
     <TextView
         android:id="@+id/EmailAddress"
@@ -111,12 +131,12 @@
         android:hint="Email address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ChildAge" />
+        app:layout_constraintTop_toBottomOf="@+id/Childgender" />
 
     <TextView
         android:id="@+id/PhoneNo"
-        android:layout_width="167dp"
-        android:layout_height="37dp"
+        android:layout_width="357dp"
+        android:layout_height="39dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
@@ -125,12 +145,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Childgender" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
     <TextView
         android:id="@+id/Address"
-        android:layout_width="360dp"
-        android:layout_height="30dp"
+        android:layout_width="364dp"
+        android:layout_height="36dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
@@ -139,7 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/PhoneNo" />
 
     <TextView
         android:id="@+id/Requirement"

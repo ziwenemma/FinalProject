@@ -31,19 +31,10 @@
                     android:title="Post my Profile"></item>
 
                 <item
-                    android:id="@+id/nav_login"
-                    android:icon="@drawable/login_icon"
-                    android:title="Login"></item>
+                    android:id="@+id/AccountInfo"
+                    android:icon="@drawable/ic_baseline_manage_accounts_24"
+                    android:title="Account"></item>
 
-                <item
-                    android:id="@+id/nav_profile"
-                    android:icon="@drawable/profile_icon"
-                    android:title="Profile"></item>
-
-                <item
-                    android:id="@+id/nav_logout"
-                    android:icon="@drawable/logout_icon"
-                    android:title="Logout"></item>
             </menu>
         </item>
     </group>
@@ -57,10 +48,6 @@
                 android:title="Contact us"
                 android:icon="@drawable/share_icon"></item>
 
-            <item
-                android:id="@+id/nav_ratings"
-                android:title="Rate Us"
-                android:icon="@drawable/rating_icon"></item>
         </menu>
     </item>
 

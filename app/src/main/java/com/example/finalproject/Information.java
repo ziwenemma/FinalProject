@@ -5,13 +5,11 @@ public class Information {
     }
 
 
-    String id, parentName, childName,ChildAge,ChildNum,Address,Phone,Email,Requirement,gender;
+    String id, parentName, ChildAge,Address,Phone,Email,Requirement,gender;
 
-    public Information(String id, String parentName, String childName, String childAge, String childNum, String address, String phone, String email, String requirement, String gender) {
+    public Information(String id, String parentName,  String childAge, String address, String phone, String email, String requirement, String gender) {
         this.parentName = parentName;
-        this.childName = childName;
         this.ChildAge = childAge;
-        this.ChildNum = childNum;
         this.Address = address;
         this.Phone = phone;
         this.Email = email;
@@ -36,28 +34,12 @@ public class Information {
         this.parentName = parentName;
     }
 
-    public String getChildName() {
-        return childName;
-    }
-
-    public void setChildName(String childName) {
-        this.childName = childName;
-    }
-
     public String getChildAge() {
         return ChildAge;
     }
 
     public void setChildAge(String childAge) {
         ChildAge = childAge;
-    }
-
-    public String getChildNum() {
-        return ChildNum;
-    }
-
-    public void setChildNum(String childNum) {
-        ChildNum = childNum;
     }
 
     public String getAddress() {

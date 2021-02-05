@@ -35,10 +35,13 @@ public class LoginActivityParent extends AppCompatActivity {
     TextView forgotTextLink;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_parent);
+
+
 
 
         mEmail = findViewById(R.id.email);
@@ -47,6 +50,8 @@ public class LoginActivityParent extends AppCompatActivity {
         signupButton = (Button) findViewById(R.id.signupButton);
         fAuth = FirebaseAuth.getInstance();
         forgotTextLink = findViewById(R.id.forgotPassword);
+
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
