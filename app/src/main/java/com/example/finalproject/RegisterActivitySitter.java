@@ -100,6 +100,15 @@ public class RegisterActivitySitter extends AppCompatActivity {
                             user.put("fName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("BabySitterName","");
+                            user.put("BabySitterAge","");
+                            user.put("BabySitterEmail","");
+                            user.put("BabySitterPhone","");
+                            user.put("BabySitterDesc","");
+                            user.put("BabySitterCity","");
+                            user.put("BabySitterRate","");
+                            user.put("BabySitterGender","");
+
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
 
                                 @Override

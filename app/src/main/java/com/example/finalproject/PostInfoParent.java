@@ -44,7 +44,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
     Button btn;
 
     public static final String TAG = "TAG";
-    EditText changeGender,changeParentName,changeChildName,changeChildAge,changeChildNum,changeEmailAdd,changePhone,changeAdd,changeRequirement;
+    EditText changeGender,changeParentName,changeChildAge,changeEmailAdd,changePhone,changeAdd,changeRequirement;
     ImageView changeImageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
