@@ -79,6 +79,9 @@ public class ParentInformation extends AppCompatActivity  {
         ImageView=findViewById(R.id.ImageView);
 
 
+
+
+
         StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
@@ -108,11 +111,13 @@ public class ParentInformation extends AppCompatActivity  {
                     Requirement.setText(documentSnapshot.getString("Requirement"));
                     Gender.setText(documentSnapshot.getString("Gender"));
 
+
                 }else {
                     Log.d("tag", "onEvent: Document do not exists");
                 }
             }
         });
+
 
 
 
@@ -129,8 +134,18 @@ public class ParentInformation extends AppCompatActivity  {
                 i.putExtra("Address",Add.getText().toString());
                 i.putExtra("Requirement",Requirement.getText().toString());
                 i.putExtra("Gender",Gender.getText().toString());
-
                 startActivity(i);
+
+
+                Intent intent=new Intent(v.getContext(),BabysitterDetail.class);
+                intent.putExtra("ParentName",ParentName.getText().toString());
+                intent.putExtra("email",EmailAdd.getText().toString());
+                intent.putExtra("ParentPhone",Phone.getText().toString());
+                intent.putExtra("Requirement",Requirement.getText().toString());
+                intent.putExtra("ChildAge",ChildAge.getText().toString());
+                intent.putExtra("Address",Add.getText().toString());
+                startActivity(intent);
+
 
             }
         });
