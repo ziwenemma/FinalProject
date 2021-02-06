@@ -66,7 +66,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
          mPost_key=getIntent().getExtras().getString("babysitter_id");
 
-          parentName=getIntent().getExtras().getString("ParentName");
+         parentName=getIntent().getExtras().getString("ParentName");
          parentEmail=getIntent().getExtras().getString("email");
         parentPhone=getIntent().getExtras().getString("ParentPhone");
         parentReq=getIntent().getExtras().getString("Requirement");

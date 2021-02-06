@@ -68,6 +68,9 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         String  Requirement= data.getStringExtra("Requirement");
         String  gender= data.getStringExtra("Gender");
 
+
+
+
         fAuth =FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
         user= fAuth.getCurrentUser();
@@ -149,6 +152,8 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                         ||changePhone.getText().toString().isEmpty()|| changeAdd.getText().toString().isEmpty()||changeRequirement.getText().toString().isEmpty()||
                         changeGender.getText().toString().isEmpty()){
                     Toast.makeText(PostInfoParent.this, "One or many Fields are empty", Toast.LENGTH_SHORT);
+
+
                     return;
                 }
 
@@ -184,6 +189,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("id", Id);
                                 editor.apply();
+
 
 
                                 startActivity(new Intent(getApplicationContext(),ParentInformation.class));
