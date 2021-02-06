@@ -62,14 +62,14 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
 
         Intent data =getIntent();
-        String SitterName =data.getStringExtra("BabySitterName");
-        String SitterAge = data.getStringExtra("BabySitterAge");
-        String SitterEmail=data.getStringExtra("BabySitterEmail");
-        String  SitterPhone= data.getStringExtra("BabySitterPhone");
-        String SitterCity=data.getStringExtra("BabySitterCity");
-        String  SitterRate= data.getStringExtra("BabySitterRate");
-        String  SitterDesc= data.getStringExtra("BabySitterDesc");
-        String  SitterGender= data.getStringExtra("BabySitterGender");
+        String BabySitterName =data.getStringExtra("BabySitterName");
+        String BabySitterAge = data.getStringExtra("BabySitterAge");
+        String BabySitterEmail=data.getStringExtra("BabySitterEmail");
+        String  BabySitterPhone= data.getStringExtra("BabySitterPhone");
+        String BabySitterCity=data.getStringExtra("BabySitterCity");
+        String  BabySitterRate= data.getStringExtra("BabySitterRate");
+        String  BabySitterDesc= data.getStringExtra("BabySitterDesc");
+        String  BabySitterGender= data.getStringExtra("BabySitterGender");
 
 
 
@@ -188,9 +188,9 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
 
                                 InformationSitter informationSitter = new InformationSitter(Id,changeSitterName.getText().toString(),
-                                        changeSitterAge.getText().toString(),
-                                        email,changeSitterPhone.getText().toString(),changeSitterCity.getText().toString(),changeSitterRate.getText().toString(),
-                                        changeSitterDesc.getText().toString(),changeSitterGender.getText().toString());
+                                        changeSitterAge.getText().toString(),changeSitterCity.getText().toString(),changeSitterRate.getText().toString(),
+                                        changeSitterDesc.getText().toString(),email,changeSitterPhone.getText().toString(),
+                                        changeSitterGender.getText().toString());
                                 mDatabase.child("BabySitterPost").child(fAuth.getCurrentUser().getUid()).setValue(informationSitter);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("id", Id);
@@ -213,18 +213,18 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
 
 
-        changeSitterName.setText(SitterName);
-        changeSitterAge.setText(SitterAge);
-        changeSitterCity.setText(SitterCity);
-        changeSitterRate.setText(SitterRate);
-        changeSitterEmail.setText(SitterEmail);
-        changeSitterPhone.setText(SitterPhone);
-        changeSitterDesc.setText(SitterDesc);
-        changeSitterGender.setText(SitterGender);
+        changeSitterName.setText(BabySitterName);
+        changeSitterAge.setText(BabySitterAge);
+        changeSitterCity.setText(BabySitterCity);
+        changeSitterRate.setText(BabySitterRate);
+        changeSitterEmail.setText(BabySitterEmail);
+        changeSitterPhone.setText(BabySitterPhone);
+        changeSitterDesc.setText(BabySitterDesc);
+        changeSitterGender.setText(BabySitterGender);
 
 
-        Log.d(TAG, "onCreate" + SitterName + " "  + SitterAge + " " +SitterCity
-                +" "+SitterRate+" "+SitterEmail+" "+SitterPhone+" "+SitterDesc+" "+SitterGender);
+        Log.d(TAG, "onCreate" + BabySitterName + " "  + BabySitterAge + " " +BabySitterCity
+                +" "+BabySitterRate+" "+BabySitterEmail+" "+BabySitterPhone+" "+BabySitterDesc+" "+BabySitterGender);
 
 
 

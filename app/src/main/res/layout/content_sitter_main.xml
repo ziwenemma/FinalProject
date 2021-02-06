@@ -170,11 +170,27 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/babysitte_des"
-                android:layout_centerHorizontal="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="10dp"
                 android:background="#ffccff"
                 android:gravity="center"
                 android:text="$30/hour"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/babysitter_gender"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/babysitte_des"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="275dp"
+                android:layout_marginLeft="127dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/babysitter_rate"
+                android:background="#ffccff"
+                android:gravity="center"
+                android:text="female"
                 android:textSize="20sp" />
 
             <TextView
@@ -252,6 +268,7 @@
                 android:layout_marginTop="5dp"
                 android:background="#e0e0e0"
                 android:gravity="center"
+                android:onClick="changeProfile"
                 android:text="Update it"
                 android:textSize="18sp" />
 

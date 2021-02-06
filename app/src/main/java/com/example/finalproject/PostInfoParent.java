@@ -179,7 +179,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
                                 String Id = mDatabase.push().getKey();
                                 Information information = new Information(Id,changeParentName.getText().toString(),
                                         changeChildAge.getText().toString(),
-                                        email,changePhone.getText().toString(),changeAdd.getText().toString(),changeRequirement.getText().toString(),changeGender.getText().toString());
+                                        changeAdd.getText().toString(),changePhone.getText().toString(),email,changeRequirement.getText().toString(),changeGender.getText().toString());
                                 mDatabase.child("ParentPost").child(fAuth.getCurrentUser().getUid()).setValue(information);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("id", Id);
@@ -210,8 +210,8 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         changeGender.setText(gender);
 
 
-        Log.d(TAG, "onCreate" + ParentName + " "  + ChildAge + " " +EmailAdd
-                +" "+Phone+" "+Add+" "+Requirement+" "+gender);
+        Log.d(TAG, "onCreate" + ParentName + " "  + ChildAge + " " +Add
+                +" "+Phone+" "+EmailAdd+" "+Requirement+" "+gender);
 
     }
 

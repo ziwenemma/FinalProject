@@ -7,7 +7,7 @@ public class InformationSitter {
     String id,sitterName,sitterAge,sitterCity,sitterRate,sitterDesc,sitterEmail,sitterPhone,sitterGender;
 
 
-    public InformationSitter(String sitterGender,String id, String sitterName, String sitterAge, String sitterCity, String sitterRate, String sitterDesc, String sitterEmail, String sitterPhone) {
+    public InformationSitter(String id,String sitterName,  String sitterAge, String sitterCity, String sitterRate, String sitterDesc, String sitterEmail, String sitterPhone,String sitterGender) {
         this.id = id;
         this.sitterName = sitterName;
         this.sitterAge = sitterAge;
