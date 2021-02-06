@@ -118,7 +118,7 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
                     @Override
                     public void onClick(View v) {
                         final String babysitterid = getRef(i).getKey();
-                        Log.d("babysitterid", " data : " + babysitterid);
+                        Log.d("babysitter_id", " data : " + babysitterid);
                         Intent singleItemIntent = new Intent(MainPageParent.this,BabysitterDetail.class);
                         singleItemIntent.putExtra("babysitter_id",post_key);
                         startActivity(singleItemIntent);
