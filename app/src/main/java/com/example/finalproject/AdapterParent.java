@@ -89,4 +89,3 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
     }
 
 }
-
