@@ -36,9 +36,11 @@ public class BabysitterDetail extends AppCompatActivity {
     private DatabaseReference mdatabasereference;
     FirebaseAuth fAuth;
 
-    private String parentName=null;
-    private String parentEmail=null;private String parentPhone=null;
-    private String parentChildage=null; private String parentAdd=null;
+    private String parentName;
+    private String parentEmail=null;
+    private String parentPhone=null;
+    private String parentChildage=null;
+    private String parentAdd=null;
     private String parentReq=null;
 
     private Button makeanAppointmentbtn;
@@ -64,7 +66,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
 
 
-         mPost_key=getIntent().getExtras().getString("babysitter_id");
+        mPost_key=getIntent().getExtras().getString("babysitter_id");
 
          parentName=getIntent().getExtras().getString("ParentName");
          parentEmail=getIntent().getExtras().getString("email");
@@ -87,7 +89,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                makeanAppointment();
+               makeanAppointment();
             }
 
             private void makeanAppointment() {
@@ -114,49 +116,31 @@ public class BabysitterDetail extends AppCompatActivity {
                 appointMap.put("BabysitterCity",babysitterCity.getText().toString());
                 appointMap.put("BabysitterRate",babysitterRate.getText().toString());
 
+                appointMap.put("ParentName", parentName);
+                appointMap.put("ParentEmail",parentEmail);
+                appointMap.put("ParentChildAge",parentChildage);
+                appointMap.put("ParentReq",parentReq);
+                appointMap.put("ParentPhone",parentPhone);
+                appointMap.put("ParentAdd",parentAdd);
 
 
-                final HashMap<String, Object> parentput = new HashMap<>();
-                parentput.put("babysitter_id", mPost_key);
-                parentput.put("parent_id", uid);
-                parentput.put("date", saveCurrentDate);
-                parentput.put("time", saveCurrentTime);
-                parentput.put("ParentName", parentName);
-                parentput.put("ParentEmail",parentEmail);
-                parentput.put("ParentChildAge",parentChildage);
-                parentput.put("ParentReq",parentReq);
-                parentput.put("ParentPhone",parentPhone);
-                parentput.put("ParentAdd",parentAdd);
 
-                makeAppointement.child(fAuth.getCurrentUser().getUid()).child("babysitter")
+                makeAppointement.child(fAuth.getCurrentUser().getUid()).child(mPost_key)
                             .updateChildren(appointMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(BabysitterDetail.this, "Make an appointment successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(BabysitterDetail.this, MainPageParent.class);
+                                        Intent intent = new Intent(BabysitterDetail.this, AppointmentActivity.class);
                                         startActivity(intent);
+
 
                                     }
                                 }
                             });
 
-                makeAppointement.child(fAuth.getCurrentUser().getUid()).child("parentuser")
-                        .updateChildren(parentput)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(BabysitterDetail.this, "Make an appointment successfully", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(BabysitterDetail.this, MainPageParent.class);
-                                    startActivity(intent);
-
-                                }
-                            }
-                        });
-
-                }
+            }
 
         });
 

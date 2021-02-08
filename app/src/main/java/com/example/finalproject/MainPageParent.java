@@ -122,6 +122,9 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
                         Intent singleItemIntent = new Intent(MainPageParent.this,BabysitterDetail.class);
                         singleItemIntent.putExtra("babysitter_id",post_key);
                         startActivity(singleItemIntent);
+
+
+
                     }
                 });
 
