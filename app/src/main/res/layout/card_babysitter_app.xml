@@ -1,8 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EFE6E6"
+    tools:context=".AppointmentBabySitter">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="#ffe5cc">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/productimage_baby"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:padding="4dp"
+                android:src="@drawable/image_person"/>
+
+            <TextView
+                android:id="@+id/textName_baby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="12sp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="Name:"
+                android:background="#e0e0e0"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+            <TextView
+                android:id="@+id/text1_baby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+                android:layout_toRightOf="@id/textName_baby"
+                android:text="Emma"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textChilage"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1_baby"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="ChildAge    :"
+                android:background="#e0e0e0"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/childage_baby"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text1_baby"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/text1_baby"
+                android:text="3 years old"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/textGender"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textChilage"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="ChildGender:"
+                android:background="#e0e0e0"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+
+            <TextView
+                android:id="@+id/childgender_baby"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textChilage"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/text1_baby"
+                android:text="boy"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+            <TextView
+                android:id="@+id/textEmail_baby"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textGender"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="Email :"
+                android:background="#e0e0e0"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+
+            <TextView
+                android:id="@+id/email_baby"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textGender"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/textEmail_baby"
+                android:text="1234@gmail.com"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+
+            <TextView
+                android:id="@+id/textPhone_baby"
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textEmail_baby"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="phone :"
+                android:background="#e0e0e0"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+
+            <TextView
+                android:id="@+id/phone_baby"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textEmail_baby"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/textPhone_baby"
+                android:text="51453242"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+            <TextView
+                android:id="@+id/add_baby"
+                android:textSize="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textPhone_baby"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="Montreal,Dt"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/textRequirement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_baby"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/productimage_baby"
+                android:text="my requirement is find a babysitter"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"
+                android:textSize="10sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"    
+                android:layout_below="@+id/productimage_baby"
+                android:layout_marginTop="8dp"
+                android:text="Chat with this parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#9999ff"
+                android:id="@+id/chatbtn"
+                />
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chatbtn"
+                android:layout_marginTop="8dp"
+                android:text="Accept"
+                android:layout_toRightOf="@+id/cancel"
+                 android:background="#99ccff"
+                android:id="@+id/accept"
+                />
+
+
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chatbtn"
+                android:layout_marginTop="8dp"
+                android:text="Cancel"
+                android:background="#e5ccff"
+                android:id="@+id/cancel"
+                />
+
+        </RelativeLayout>
+        
+        
+            
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
