@@ -34,6 +34,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
     private String mPost_key = null;
     private DatabaseReference mdatabasereference;
+    private DatabaseReference databaseReference;
     FirebaseAuth fAuth;
 
     private String parentName;
@@ -42,6 +43,7 @@ public class BabysitterDetail extends AppCompatActivity {
     private String parentChildage=null;
     private String parentAdd=null;
     private String parentReq=null;
+    private String childGender;
 
     private Button makeanAppointmentbtn;
     private TextView babysitterEmail;
@@ -63,6 +65,7 @@ public class BabysitterDetail extends AppCompatActivity {
         String uid=user.getUid();
 
         mdatabasereference= FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("BabySitterPost");
+        databaseReference= FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("ParentPost");
 
 
 
@@ -122,6 +125,7 @@ public class BabysitterDetail extends AppCompatActivity {
                 appointMap.put("ParentReq",parentReq);
                 appointMap.put("ParentPhone",parentPhone);
                 appointMap.put("ParentAdd",parentAdd);
+                appointMap.put("ChildGender",childGender);
 
 
 
@@ -157,6 +161,38 @@ public class BabysitterDetail extends AppCompatActivity {
 
       String id=mdatabasereference.getKey();
 
+        databaseReference.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String my_name= (String) snapshot.child("ParentName").getValue();
+                String my_phone=(String)snapshot.child("phone").getValue();
+                String my_email=(String)snapshot.child("email").getValue();
+                String my_childage=(String)snapshot.child("childAge").getValue();
+                String my_gender=(String)snapshot.child("gender").getValue();
+                String my_address=(String)snapshot.child("address").getValue();
+                String my_requirement=(String)snapshot.child("requirement").getValue();
+
+                parentName=my_name;
+                parentPhone=my_phone;
+                parentEmail=my_childage;
+                parentChildage=my_childage;
+                parentAdd=my_address;
+                parentReq=my_requirement;
+               childGender  =my_gender;
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
         mdatabasereference.child(mPost_key).addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -178,6 +214,7 @@ public class BabysitterDetail extends AppCompatActivity {
                 babysitterPhone.setText(post_phone);
                 babysitterRate.setText(post_rate);
                 babysitterEmail.setText(post_email);
+
             }
 
 

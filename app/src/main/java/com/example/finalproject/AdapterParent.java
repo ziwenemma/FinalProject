@@ -29,6 +29,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
 
     }
 
+
     @Override
     public int getItemCount() {
         return arrayList.size();
