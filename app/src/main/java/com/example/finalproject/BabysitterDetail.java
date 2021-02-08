@@ -125,7 +125,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
 
 
-                makeAppointement.child(fAuth.getCurrentUser().getUid()).child(mPost_key)
+                makeAppointement.child("ParentUser").child(fAuth.getCurrentUser().getUid()).child(mPost_key)
                             .updateChildren(appointMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -139,6 +139,17 @@ public class BabysitterDetail extends AppCompatActivity {
                                     }
                                 }
                             });
+
+
+                makeAppointement.child("BabySitterUser").child(mPost_key).child(fAuth.getCurrentUser().getUid())
+                        .updateChildren(appointMap)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                }
+                            }
+                        });
 
             }
 

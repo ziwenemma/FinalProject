@@ -66,7 +66,7 @@ public class AppointmentActivity extends AppCompatActivity {
         protected void onStart() {
             super.onStart();
             query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child(fAuth.getCurrentUser().getUid());
-            final DatabaseReference applist=FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment");
+            final DatabaseReference applist=FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("ParentUser");
             FirebaseRecyclerOptions<AppointmentInfo> options =
                     new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
                             .setQuery(applist.child(fAuth.getCurrentUser().getUid()),AppointmentInfo.class)
