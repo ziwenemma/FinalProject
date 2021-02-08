@@ -45,9 +45,7 @@ public class AppointmentActivity extends AppCompatActivity {
     Query query;
     private DatabaseReference databaseReference;
     FirebaseRecyclerAdapter<AppointmentInfo, BlogViewHolder> firebaseRecyclerAdapter;
-    LinearLayoutManager linearLayoutManager;
-    AppointmentAdapter adapter;
-    List<AppointmentInfo> appointList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

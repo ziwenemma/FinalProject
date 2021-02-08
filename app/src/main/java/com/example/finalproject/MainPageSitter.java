@@ -87,6 +87,27 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
         sitteruser = fAuth.getCurrentUser();
 
 
+
+        BottomNavigationView navigationView1 = (BottomNavigationView) findViewById(R.id.bottom_menusitter);
+        navigationView1.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Post_sitter:
+                        Intent intent = new Intent(MainPageSitter.this, MainPageSitter.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.Request:
+                        Intent i = new Intent(MainPageSitter.this, AppointmentBabySitter.class);
+                        startActivity(i);
+                        item.setIcon(R.drawable.appoint);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
         DocumentReference documentReference = fStore.collection("babysitterusers").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
 

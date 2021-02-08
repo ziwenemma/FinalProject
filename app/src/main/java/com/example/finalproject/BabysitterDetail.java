@@ -118,7 +118,6 @@ public class BabysitterDetail extends AppCompatActivity {
                 appointMap.put("BabysitterPhone", babysitterPhone.getText().toString());
                 appointMap.put("BabysitterCity",babysitterCity.getText().toString());
                 appointMap.put("BabysitterRate",babysitterRate.getText().toString());
-
                 appointMap.put("ParentName", parentName);
                 appointMap.put("ParentEmail",parentEmail);
                 appointMap.put("ParentChildAge",parentChildage);
@@ -176,7 +175,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
                 parentName=my_name;
                 parentPhone=my_phone;
-                parentEmail=my_childage;
+                parentEmail=my_email;
                 parentChildage=my_childage;
                 parentAdd=my_address;
                 parentReq=my_requirement;

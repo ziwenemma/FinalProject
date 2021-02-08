@@ -6,7 +6,7 @@
 
 
     <item
-        android:id="@+id/Post_info_sitter"
+        android:id="@+id/Post_sitter"
         android:title="Home"
         android:enabled="true"
         app:showAsAction="ifRoom"
