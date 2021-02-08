@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -65,10 +66,30 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page_parent);
 
-        arrayList=new ArrayList<>();
+        arrayList = new ArrayList<>();
         fAuth = FirebaseAuth.getInstance();
         mdatabasereference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("BabySitterPost");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerViewGirdView);
+
+        BottomNavigationView navigationView1 = (BottomNavigationView) findViewById(R.id.bottom_menu);
+        navigationView1.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.Post_info_sitter:
+                        Intent intent = new Intent(MainPageParent.this, MainPageParent.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.Appointment:
+                        Intent i = new Intent(MainPageParent.this, AppointmentActivity.class);
+                        startActivity(i);
+                        item.setIcon(R.drawable.appoint);
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         /*------Hooks-----*/
         drawerLayout= findViewById(R.id.drawer_layout);
@@ -219,6 +240,7 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
 
     }
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item){
         int id= item.getItemId();
@@ -233,6 +255,7 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
         else if (id==R.id.nav_post){
             startActivity(new Intent(getApplicationContext(),ParentInformation.class));
         }
+
         DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return  true;
@@ -243,12 +266,11 @@ public class MainPageParent extends AppCompatActivity implements NavigationView.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.action_profile) {
             Intent myintent = new Intent(MainPageParent.this, ProfileActivity.class);
             startActivity(myintent);
         }
+
         return super.onOptionsItemSelected(item);
     }
-
 }
