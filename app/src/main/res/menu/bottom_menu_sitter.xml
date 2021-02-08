@@ -14,7 +14,7 @@
 
 
     <item
-        android:title="Requests"
+        android:title="Receive Appointment"
         android:id="@+id/Request"
         android:enabled="true"
         app:showAsAction="ifRoom"
