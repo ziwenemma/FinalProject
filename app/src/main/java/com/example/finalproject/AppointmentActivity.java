@@ -107,6 +107,9 @@ public class AppointmentActivity extends AppCompatActivity {
                 blogViewHolder.setPhone(appointmentInfo.getBabysitterPhone());
                 blogViewHolder.setEmail(appointmentInfo.getBabysitterEmail());
                 blogViewHolder.setRate(appointmentInfo.getBabysitterRate());
+                blogViewHolder.setStatus(appointmentInfo.getStatus());
+
+
 
                 blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
 
@@ -183,6 +186,12 @@ public class AppointmentActivity extends AppCompatActivity {
         public void setRate(String rate) {
             TextView arate = (TextView) mView.findViewById(R.id.text2);
             arate.setText(rate);
+
+        }
+
+        public void setStatus(String status) {
+            TextView astatus = (TextView) mView.findViewById(R.id.textstatus);
+            astatus.setText(status);
 
         }
 

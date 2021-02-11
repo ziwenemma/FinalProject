@@ -44,6 +44,7 @@ public class BabysitterDetail extends AppCompatActivity {
     private String parentAdd=null;
     private String parentReq=null;
     private String childGender;
+    private  String appstatus;
 
     private Button makeanAppointmentbtn;
     private TextView babysitterEmail;
@@ -125,6 +126,7 @@ public class BabysitterDetail extends AppCompatActivity {
                 appointMap.put("ParentPhone",parentPhone);
                 appointMap.put("ParentAdd",parentAdd);
                 appointMap.put("ChildGender",childGender);
+                appointMap.put("Status",appstatus);
 
 
 
@@ -165,13 +167,14 @@ public class BabysitterDetail extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String my_name= (String) snapshot.child("ParentName").getValue();
+                String my_name= (String) snapshot.child("parentName").getValue();
                 String my_phone=(String)snapshot.child("phone").getValue();
                 String my_email=(String)snapshot.child("email").getValue();
                 String my_childage=(String)snapshot.child("childAge").getValue();
                 String my_gender=(String)snapshot.child("gender").getValue();
                 String my_address=(String)snapshot.child("address").getValue();
                 String my_requirement=(String)snapshot.child("requirement").getValue();
+                String my_status=(String)snapshot.child("Status") .getValue();
 
                 parentName=my_name;
                 parentPhone=my_phone;
@@ -179,7 +182,8 @@ public class BabysitterDetail extends AppCompatActivity {
                 parentChildage=my_childage;
                 parentAdd=my_address;
                 parentReq=my_requirement;
-               childGender  =my_gender;
+                childGender  =my_gender;
+                appstatus=my_status;
             }
 
 

@@ -15,15 +15,24 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +44,7 @@ public class AppointmentBabySitter extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     FirebaseAuth fAuth;
 
+    Button btn;
 
     Query query;
     private DatabaseReference databaseReference;
@@ -46,7 +56,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_baby_sitter);
 
-
         fAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.recyclerViewRequest);
         recyclerView.setHasFixedSize(true);
@@ -55,7 +64,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
 
         arrayList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment");
-
 
 
         BottomNavigationView navigationView1 = (BottomNavigationView) findViewById(R.id.bottom_menusitter);
@@ -85,6 +93,8 @@ public class AppointmentBabySitter extends AppCompatActivity {
         super.onStart();
         query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child(fAuth.getCurrentUser().getUid());
         final DatabaseReference applist = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("BabySitterUser");
+        final DatabaseReference applist1 = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("ParentUser");
+
         FirebaseRecyclerOptions<AppointmentInfo> options =
                 new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
                         .setQuery(applist.child(fAuth.getCurrentUser().getUid()), AppointmentInfo.class)
@@ -96,7 +106,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull final BlogViewHolder blogViewHolder, final int i, @NonNull final AppointmentInfo appointmentInfo) {
-
                 blogViewHolder.setName(appointmentInfo.getParentName());
                 blogViewHolder.setPhone(appointmentInfo.getParentPhone());
                 blogViewHolder.setEmail(appointmentInfo.getParentEmail());
@@ -104,6 +113,77 @@ public class AppointmentBabySitter extends AppCompatActivity {
                 blogViewHolder.setGender(appointmentInfo.getChildGender());
                 blogViewHolder.setAdd(appointmentInfo.getParentAdd());
                 blogViewHolder.setReq(appointmentInfo.getParentReq());
+                blogViewHolder.setStatus(appointmentInfo.getStatus());
+                String pid=appointmentInfo.getParent_id();
+
+
+                blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CharSequence options[] =new CharSequence[]{
+                                "Cancel",
+                                "Accept"
+                        };
+                        AlertDialog.Builder builder=new AlertDialog.Builder(AppointmentBabySitter.this);
+                        builder.setTitle("Appointment List");
+
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which==0){
+                                    applist.child(fAuth.getCurrentUser().getUid()).child(pid).removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                }
+                                            });
+
+                                    applist1.child(pid).child(fAuth.getCurrentUser().getUid()).removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Intent intent=new Intent(AppointmentBabySitter.this,AppointmentBabySitter.class);
+                                                    startActivity(intent);
+                                                }
+                                            });
+
+                                }
+                                if (which==1){
+                                    applist.child(fAuth.getCurrentUser().getUid()).child(pid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            snapshot.getRef().child("Status").setValue("Accepted");
+                                            dialog.dismiss();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Log.d("Error", error.getMessage());
+
+                                        }
+                                    });
+                                    applist1.child(pid).child(fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            snapshot.getRef().child("Status").setValue("Accepted");
+                                            dialog.dismiss();
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+                                            Log.d("Error", error.getMessage());
+
+                                        }
+                                    });
+
+                                }
+                            }
+                        });
+                        builder.show();
+
+                        }
+                });
+
             }
 
 
@@ -121,6 +201,9 @@ public class AppointmentBabySitter extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(firebaseRecyclerAdapter);
 
+
+
+
     }
 
 
@@ -134,6 +217,7 @@ public class AppointmentBabySitter extends AppCompatActivity {
             mView = itemView;
             fAuth = FirebaseAuth.getInstance();
         }
+
 
 
         public void setName(String name) {
@@ -175,6 +259,12 @@ public class AppointmentBabySitter extends AppCompatActivity {
         public void setAdd(String add) {
             TextView aadd = (TextView) mView.findViewById(R.id.add_baby);
             aadd.setText(add);
+
+        }
+
+        public void setStatus(String status) {
+            TextView astatus = (TextView) mView.findViewById(R.id.status);
+            astatus.setText(status);
 
         }
 
