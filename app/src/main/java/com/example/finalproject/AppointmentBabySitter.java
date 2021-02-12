@@ -1,3 +1,4 @@
+
 package com.example.finalproject;
 
 import androidx.annotation.NonNull;
@@ -56,6 +57,7 @@ public class AppointmentBabySitter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_baby_sitter);
 
+        btn=findViewById(R.id.chatbtn);
         fAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.recyclerViewRequest);
         recyclerView.setHasFixedSize(true);
@@ -66,6 +68,14 @@ public class AppointmentBabySitter extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment");
 
 
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(AppointmentBabySitter.this,ChatActivity.class);
+                startActivity(intent);
+            }
+        });
+        
         BottomNavigationView navigationView1 = (BottomNavigationView) findViewById(R.id.bottom_menusitter);
         navigationView1.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
