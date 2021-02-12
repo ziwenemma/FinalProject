@@ -72,17 +72,17 @@ public class BabysitterDetail extends AppCompatActivity {
 
         mPost_key=getIntent().getExtras().getString("babysitter_id");
 
-         parentName=getIntent().getExtras().getString("ParentName");
-         parentEmail=getIntent().getExtras().getString("email");
+        parentName=getIntent().getExtras().getString("ParentName");
+        parentEmail=getIntent().getExtras().getString("email");
         parentPhone=getIntent().getExtras().getString("ParentPhone");
         parentReq=getIntent().getExtras().getString("Requirement");
-       parentChildage=getIntent().getExtras().getString("ChildAge");
+        parentChildage=getIntent().getExtras().getString("ChildAge");
         parentAdd=getIntent().getExtras().getString("Address");
 
 
         babysitterName=(TextView)findViewById(R.id.babysitter_name_de);
-         babysitterAge=(TextView)findViewById(R.id.babysitter_age_de);
-         babysitterCity=(TextView)findViewById(R.id.babysitte_city_de);
+        babysitterAge=(TextView)findViewById(R.id.babysitter_age_de);
+        babysitterCity=(TextView)findViewById(R.id.babysitte_city_de);
         babysitterDesc=(TextView)findViewById(R.id.babysitte_des_de);
         babysitterPhone=(TextView)findViewById(R.id.babysitter_ph);
         babysitterEmail=(TextView)findViewById(R.id.babysitter_email);
@@ -93,7 +93,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-               makeanAppointment();
+                makeanAppointment();
             }
 
             private void makeanAppointment() {
@@ -131,19 +131,19 @@ public class BabysitterDetail extends AppCompatActivity {
 
 
                 makeAppointement.child("ParentUser").child(fAuth.getCurrentUser().getUid()).child(mPost_key)
-                            .updateChildren(appointMap)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(BabysitterDetail.this, "Make an appointment successfully", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(BabysitterDetail.this, AppointmentActivity.class);
-                                        startActivity(intent);
+                        .updateChildren(appointMap)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(BabysitterDetail.this, "Make an appointment successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(BabysitterDetail.this, AppointmentActivity.class);
+                                    startActivity(intent);
 
 
-                                    }
                                 }
-                            });
+                            }
+                        });
 
 
                 makeAppointement.child("BabySitterUser").child(mPost_key).child(fAuth.getCurrentUser().getUid())
@@ -160,7 +160,7 @@ public class BabysitterDetail extends AppCompatActivity {
 
         });
 
-      String id=mdatabasereference.getKey();
+        String id=mdatabasereference.getKey();
 
         databaseReference.child(fAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
 

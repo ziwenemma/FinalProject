@@ -5,12 +5,15 @@ public class AppointmentInfo {
 
     }
 
-    String parent_id,babysitter_id, BabysitterName, BabysitterPhone, BabysitterEmail, BabysitterRate,ParentName,ParentEmail,ParentPhone,ParentChildAge,ParentReq,ParentAdd,ChildGender,Status;
+    String Sender,Receiver,message,parent_id,babysitter_id, BabysitterName, BabysitterPhone, BabysitterEmail, BabysitterRate,ParentName,ParentEmail,ParentPhone,ParentChildAge,ParentReq,ParentAdd,ChildGender,Status;
 
-    public AppointmentInfo(String parent_id,String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender,String status) {
+    public AppointmentInfo(String sender,String receiver,String Message,String parent_id,String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender,String status) {
         this.parent_id = parent_id;
         this.babysitter_id = babysitter_id;
         BabysitterName = babysitterName;
+        message=Message;
+        Sender=sender;
+        Receiver=receiver;
         BabysitterPhone = babysitterPhone;
         BabysitterEmail = babysitterEmail;
         BabysitterRate = babysitterRate;
@@ -22,6 +25,31 @@ public class AppointmentInfo {
         ParentAdd = parentAdd;
         ChildGender = childGender;
         Status=status;
+    }
+
+
+    public String getSender() {
+        return Sender;
+    }
+
+    public void setSender(String sender) {
+        Sender = sender;
+    }
+
+    public String getReceiver() {
+        return Receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        Receiver = receiver;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getStatus() {

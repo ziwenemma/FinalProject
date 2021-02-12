@@ -52,6 +52,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.t2.setText(appointmentInfo.getBabysitterEmail());
         holder.t3.setText(appointmentInfo.getBabysitterPhone());
         holder.t4.setText(appointmentInfo.getBabysitterRate());
+        holder.t5.setText(appointmentInfo.getStatus());
 
     }
 
@@ -65,6 +66,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         public TextView t2;
         public TextView t3;
         public TextView t4;
+        public TextView t5;
 
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +75,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             t2 = (TextView) itemView.findViewById(R.id.textEmailApp);
             t3 = (TextView) itemView.findViewById(R.id.textPhoneApp);
             t4=(TextView)itemView.findViewById(R.id.text2);
-
+            t5=(TextView)itemView.findViewById(R.id.textstatus);
 
         }
 
