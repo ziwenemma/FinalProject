@@ -37,15 +37,17 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton btn_send;
     EditText text_send;
     private String mPost_key = null;
-
     FirebaseAuth fAuth;
     Query query;
+    Query query1;
+    String receiveid=null;
 
     MessageAdapter messageAdapter;
     ArrayList<AppointmentInfo> arrayList;
     DatabaseReference reference;
     RecyclerView recyclerView;
     FirebaseRecyclerAdapter<AppointmentInfo, BlogViewHolder> firebaseRecyclerAdapter;
+    FirebaseRecyclerAdapter<AppointmentInfo, BlogViewHolder> firebaseRecyclerAdapter2;
 
 
     @Override
@@ -75,39 +77,59 @@ public class ChatActivity extends AppCompatActivity {
                 text_send.setText("");
             }
         });
-
     }
+
 
     private void sendMessage(String message, String sender, String receiver) {
-        DatabaseReference reference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment")
-                .child("ParentUser").child(fAuth.getCurrentUser().getUid()).child(mPost_key);
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat").child(fAuth.getCurrentUser().getUid());
+
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("message", message);
-        hashMap.put("sender", fAuth.getCurrentUser().getUid());
-        hashMap.put("receiver", mPost_key);
-        reference.child("Chats").push().setValue(hashMap);
+        hashMap.put("sender", sender);
+        hashMap.put("receiver", receiver);
+        reference.child("Chats").child(mPost_key).push().setValue(hashMap);
+        String key=reference.child("Chats").child(mPost_key).getKey();
 
+        receiveid=key;
 
     }
+
 
 
     public void onStart() {
         super.onStart();
-        query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("ParentUser")
-       .child(fAuth.getCurrentUser().getUid()).child(mPost_key).child("Chats");
+        query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat")
+       .child(fAuth.getCurrentUser().getUid()).child("Chats").child(mPost_key);
         FirebaseRecyclerOptions<AppointmentInfo> options =
                 new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
                         .setQuery(query, AppointmentInfo.class)
                         .build();
 
-        String senderid=fAuth.getCurrentUser().getUid();
         Log.d("Options", " data : " + options);
+
+
+
+        query1 = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat")
+                .child(mPost_key).child("Chats").child(fAuth.getCurrentUser().getUid());
+        FirebaseRecyclerOptions<AppointmentInfo> options1 =
+                new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
+                        .setQuery(query1, AppointmentInfo.class)
+                        .build();
+
+        Log.d("Options1", " data : " + options1);
+
+
+        String senderid=fAuth.getCurrentUser().getUid();
+
 
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<AppointmentInfo,BlogViewHolder>(options) {
 
             @Override
             protected void onBindViewHolder(@NonNull BlogViewHolder blogViewHolder, int i, @NonNull AppointmentInfo appointmentInfo) {
                 final String key=getRef(i).getKey();
+                String id =appointmentInfo.getSender();
+                final String reid=appointmentInfo.getReceiver();
+
                 blogViewHolder.setMessage(appointmentInfo.getMessage());
                 blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -117,6 +139,8 @@ public class ChatActivity extends AppCompatActivity {
                 });
 
             }
+            DatabaseReference myreference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat");
+
 
             @NonNull
             @Override
@@ -124,10 +148,38 @@ public class ChatActivity extends AppCompatActivity {
                 if (fAuth.getCurrentUser().getUid().equals(senderid)){
                     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_right, parent, false);
                     return new BlogViewHolder(view);
-                }else{
+                }
+                return null;
+            }
+        };
+
+
+
+        //receive message
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<AppointmentInfo,BlogViewHolder>(options1) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull BlogViewHolder blogViewHolder, int i, @NonNull AppointmentInfo appointmentInfo) {
+                blogViewHolder.setMessage(appointmentInfo.getMessage());
+                blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+            }
+            DatabaseReference myreference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat");
+
+
+            @NonNull
+            @Override
+            public BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                if(myreference.child(mPost_key).child("Chats").child(fAuth.getCurrentUser().getUid()).getKey().equals(fAuth.getCurrentUser().getUid())) {
                     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_left, parent, false);
                     return new BlogViewHolder(view);
                 }
+                return null;
             }
         };
 
@@ -156,7 +208,6 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     public void setMessage(String message) {
         TextView bmessage = (TextView) mView.findViewById(R.id.show_meg);
         bmessage.setText(message);
-
     }
 
     @Override
@@ -164,5 +215,7 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
     }
 }
+
+
 
 
