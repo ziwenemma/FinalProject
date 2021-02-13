@@ -1,4 +1,3 @@
-
 package com.example.finalproject;
 
 import androidx.annotation.NonNull;
@@ -44,9 +43,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
     ArrayList<AppointmentInfo> arrayList;
     RecyclerView.LayoutManager layoutManager;
     FirebaseAuth fAuth;
-
-    Button btn;
-
     Query query;
     private DatabaseReference databaseReference;
     FirebaseRecyclerAdapter<AppointmentInfo,BlogViewHolder> firebaseRecyclerAdapter;
@@ -57,7 +53,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_baby_sitter);
 
-        btn=findViewById(R.id.chatbtn);
         fAuth = FirebaseAuth.getInstance();
         recyclerView = findViewById(R.id.recyclerViewRequest);
         recyclerView.setHasFixedSize(true);
@@ -67,14 +62,6 @@ public class AppointmentBabySitter extends AppCompatActivity {
         arrayList = new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment");
 
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(AppointmentBabySitter.this,ChatActivity.class);
-                startActivity(intent);
-            }
-        });
         
         BottomNavigationView navigationView1 = (BottomNavigationView) findViewById(R.id.bottom_menusitter);
         navigationView1.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,6 +91,7 @@ public class AppointmentBabySitter extends AppCompatActivity {
         query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child(fAuth.getCurrentUser().getUid());
         final DatabaseReference applist = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("BabySitterUser");
         final DatabaseReference applist1 = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("ParentUser");
+        final DatabaseReference applistchat = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Appointment").child("ParentUser");
 
         FirebaseRecyclerOptions<AppointmentInfo> options =
                 new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
@@ -132,7 +120,8 @@ public class AppointmentBabySitter extends AppCompatActivity {
                     public void onClick(View v) {
                         CharSequence options[] =new CharSequence[]{
                                 "Cancel",
-                                "Accept"
+                                "Accept",
+                                "Chat with this parent"
                         };
                         AlertDialog.Builder builder=new AlertDialog.Builder(AppointmentBabySitter.this);
                         builder.setTitle("Appointment List");
@@ -186,6 +175,24 @@ public class AppointmentBabySitter extends AppCompatActivity {
                                         }
                                     });
 
+                                }
+                                if(which==2){
+                                    applistchat.child(pid).child(fAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            final String babysitterid = pid;
+                                            Log.d("babysitter_id", " data : " + pid);
+                                            Intent singleItemIntent = new Intent(AppointmentBabySitter.this,ChatActivity.class);
+                                            singleItemIntent.putExtra("babysitter_id",pid);
+                                            startActivity(singleItemIntent);
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
                                 }
                             }
                         });

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -76,7 +77,6 @@ public class BabysitterAdapter extends RecyclerView.Adapter<BabysitterAdapter.Ad
             tphone = (TextView) itemView.findViewById(R.id.phone_baby);
             tadd = (TextView) itemView.findViewById(R.id.add_baby);
             treq = (TextView) itemView.findViewById(R.id.textRequirement);
-
 
         }
 

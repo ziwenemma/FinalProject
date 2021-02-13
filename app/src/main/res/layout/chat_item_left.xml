@@ -19,5 +19,6 @@
         android:textSize="12sp"
         android:text="Hello"
         android:padding="10dp"
+        android:id="@+id/show_meg"
         />
 </RelativeLayout>

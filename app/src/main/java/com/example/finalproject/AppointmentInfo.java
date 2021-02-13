@@ -5,9 +5,25 @@ public class AppointmentInfo {
 
     }
 
-    String Sender,Receiver,message,parent_id,babysitter_id, BabysitterName, BabysitterPhone, BabysitterEmail, BabysitterRate,ParentName,ParentEmail,ParentPhone,ParentChildAge,ParentReq,ParentAdd,ChildGender,Status;
+    String Sender;
+    String Receiver;
+    String message;
+    String parent_id;
+    String babysitter_id;
+    String BabysitterName;
+    String BabysitterPhone;
+    String BabysitterEmail;
+    String BabysitterRate;
+    String ParentName;
+    String ParentEmail;
+    String ParentPhone;
+    String ParentChildAge;
+    String ParentReq;
+    String ParentAdd;
+    String ChildGender;
+    String Status;
 
-    public AppointmentInfo(String sender,String receiver,String Message,String parent_id,String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender,String status) {
+    public AppointmentInfo(String sender, String receiver, String Message, String parent_id, String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender, String status) {
         this.parent_id = parent_id;
         this.babysitter_id = babysitter_id;
         BabysitterName = babysitterName;
