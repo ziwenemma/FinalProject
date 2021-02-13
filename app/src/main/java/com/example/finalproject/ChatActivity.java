@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -40,7 +37,9 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     Query query;
     Query query1;
-    String receiveid=null;
+    String reid=null;
+    String senid=null;
+
 
     MessageAdapter messageAdapter;
     ArrayList<AppointmentInfo> arrayList;
@@ -81,101 +80,64 @@ public class ChatActivity extends AppCompatActivity {
 
 
     private void sendMessage(String message, String sender, String receiver) {
-        DatabaseReference reference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat").child(fAuth.getCurrentUser().getUid());
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("message", message);
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
-        reference.child("Chats").child(mPost_key).push().setValue(hashMap);
-        String key=reference.child("Chats").child(mPost_key).getKey();
+        senid=sender;
+        reference.child("Message").child(fAuth.getCurrentUser().getUid()).child(mPost_key).push().setValue(hashMap);
+        reference.child("Message").child(mPost_key).child(fAuth.getCurrentUser().getUid()).push().setValue(hashMap);
 
-        receiveid=key;
 
     }
 
 
-
     public void onStart() {
         super.onStart();
-        query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat")
-       .child(fAuth.getCurrentUser().getUid()).child("Chats").child(mPost_key);
+        query = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Message").child(fAuth.getCurrentUser().getUid())
+                .child(mPost_key);
         FirebaseRecyclerOptions<AppointmentInfo> options =
                 new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
                         .setQuery(query, AppointmentInfo.class)
                         .build();
 
         Log.d("Options", " data : " + options);
-
-
-
-        query1 = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat")
-                .child(mPost_key).child("Chats").child(fAuth.getCurrentUser().getUid());
-        FirebaseRecyclerOptions<AppointmentInfo> options1 =
-                new FirebaseRecyclerOptions.Builder<AppointmentInfo>()
-                        .setQuery(query1, AppointmentInfo.class)
-                        .build();
-
-        Log.d("Options1", " data : " + options1);
-
-
-        String senderid=fAuth.getCurrentUser().getUid();
-
-
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<AppointmentInfo,BlogViewHolder>(options) {
 
             @Override
             protected void onBindViewHolder(@NonNull BlogViewHolder blogViewHolder, int i, @NonNull AppointmentInfo appointmentInfo) {
-                final String key=getRef(i).getKey();
-                String id =appointmentInfo.getSender();
-                final String reid=appointmentInfo.getReceiver();
-
                 blogViewHolder.setMessage(appointmentInfo.getMessage());
                 blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        DatabaseReference myreference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Message");
+                        myreference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                AppointmentInfo appointmentInfo1=snapshot.getValue(AppointmentInfo.class);
+                                String id= appointmentInfo1.getSender();
+                                String receiveid=appointmentInfo1.getReceiver();
+                                senid=id;
+                                reid=receiveid;
+                            }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
                     }
                 });
 
             }
-            DatabaseReference myreference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat");
-
-
             @NonNull
             @Override
             public BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                if (fAuth.getCurrentUser().getUid().equals(senderid)){
+                if (fAuth.getCurrentUser().getUid()==senid){
                     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_right, parent, false);
-                    return new BlogViewHolder(view);
-                }
-                return null;
-            }
-        };
-
-
-
-        //receive message
-        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<AppointmentInfo,BlogViewHolder>(options1) {
-
-            @Override
-            protected void onBindViewHolder(@NonNull BlogViewHolder blogViewHolder, int i, @NonNull AppointmentInfo appointmentInfo) {
-                blogViewHolder.setMessage(appointmentInfo.getMessage());
-                blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-
-            }
-            DatabaseReference myreference = FirebaseDatabase.getInstance("https://finalproject-10b66-default-rtdb.firebaseio.com/").getReference().child("Chat");
-
-
-            @NonNull
-            @Override
-            public BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                if(myreference.child(mPost_key).child("Chats").child(fAuth.getCurrentUser().getUid()).getKey().equals(fAuth.getCurrentUser().getUid())) {
+                    return new BlogViewHolder (view);
+                }else if(fAuth.getCurrentUser().getUid()==fAuth.getCurrentUser().getUid()){
                     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_left, parent, false);
                     return new BlogViewHolder(view);
                 }
@@ -198,6 +160,7 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     View mView;
     FirebaseAuth fAuth;
 
+
     public BlogViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
@@ -215,7 +178,5 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
     }
 }
-
-
 
 
