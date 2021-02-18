@@ -36,17 +36,13 @@ public class ChatActivity extends AppCompatActivity {
     private String mPost_key = null;
     FirebaseAuth fAuth;
     Query query;
-    Query query1;
     String reid=null;
     String senid=null;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<AppointmentInfo>arrayList;
 
-
-    MessageAdapter messageAdapter;
-    ArrayList<AppointmentInfo> arrayList;
-    DatabaseReference reference;
     RecyclerView recyclerView;
     FirebaseRecyclerAdapter<AppointmentInfo, BlogViewHolder> firebaseRecyclerAdapter;
-    FirebaseRecyclerAdapter<AppointmentInfo, BlogViewHolder> firebaseRecyclerAdapter2;
 
 
     @Override
@@ -86,11 +82,10 @@ public class ChatActivity extends AppCompatActivity {
         hashMap.put("message", message);
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
-        senid=sender;
+        hashMap.put("SenderName", "ParentUser:");
+
         reference.child("Message").child(fAuth.getCurrentUser().getUid()).child(mPost_key).push().setValue(hashMap);
         reference.child("Message").child(mPost_key).child(fAuth.getCurrentUser().getUid()).push().setValue(hashMap);
-
-
     }
 
 
@@ -109,6 +104,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull BlogViewHolder blogViewHolder, int i, @NonNull AppointmentInfo appointmentInfo) {
                 blogViewHolder.setMessage(appointmentInfo.getMessage());
+                blogViewHolder.setName(appointmentInfo.getSenderName());
                 blogViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -134,14 +130,9 @@ public class ChatActivity extends AppCompatActivity {
             @NonNull
             @Override
             public BlogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                if (fAuth.getCurrentUser().getUid()==senid){
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_right, parent, false);
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_layout, parent, false);
                     return new BlogViewHolder (view);
-                }else if(fAuth.getCurrentUser().getUid()==fAuth.getCurrentUser().getUid()){
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_left, parent, false);
-                    return new BlogViewHolder(view);
-                }
-                return null;
+
             }
         };
 
@@ -169,8 +160,12 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
 
     public void setMessage(String message) {
-        TextView bmessage = (TextView) mView.findViewById(R.id.show_meg);
+        TextView bmessage = (TextView) mView.findViewById(R.id.sender_message_text);
         bmessage.setText(message);
+    }
+    public void setName(String SenderName) {
+        TextView aname = (TextView) mView.findViewById(R.id.show_name);
+        aname.setText(SenderName);
     }
 
     @Override
@@ -178,5 +173,4 @@ class BlogViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
     }
 }
-
 

@@ -182,7 +182,7 @@ public class AppointmentBabySitter extends AppCompatActivity {
                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                             final String babysitterid = pid;
                                             Log.d("babysitter_id", " data : " + pid);
-                                            Intent singleItemIntent = new Intent(AppointmentBabySitter.this,ChatActivity.class);
+                                            Intent singleItemIntent = new Intent(AppointmentBabySitter.this,ChatActivitySitter.class);
                                             singleItemIntent.putExtra("babysitter_id",pid);
                                             startActivity(singleItemIntent);
 

@@ -22,8 +22,9 @@ public class AppointmentInfo {
     String ParentAdd;
     String ChildGender;
     String Status;
+    String SenderName;
 
-    public AppointmentInfo(String sender, String receiver, String Message, String parent_id, String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender, String status) {
+    public AppointmentInfo(String senderName,String sender, String receiver, String Message, String parent_id, String babysitter_id, String babysitterName, String babysitterPhone, String babysitterEmail, String babysitterRate, String parentName, String parentEmail, String parentPhone, String parentChildAge, String parentReq, String parentAdd, String childGender, String status) {
         this.parent_id = parent_id;
         this.babysitter_id = babysitter_id;
         BabysitterName = babysitterName;
@@ -41,8 +42,16 @@ public class AppointmentInfo {
         ParentAdd = parentAdd;
         ChildGender = childGender;
         Status=status;
+        SenderName=senderName;
     }
 
+    public String getSenderName() {
+        return SenderName;
+    }
+
+    public void setSenderName(String senderName) {
+        SenderName = senderName;
+    }
 
     public String getSender() {
         return Sender;

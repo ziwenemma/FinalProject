@@ -18,10 +18,8 @@ import java.util.List;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.AdapterViewHolder> {
 
     private Context mContext;
-
     private ArrayList<AppointmentInfo> arrayList;
-    public static final int MSG_TYPE_RIGHT=1;
-    public static final int MSG_TYPE_LEFT=0;
+
 
     FirebaseUser fuser;
 
@@ -34,18 +32,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.AdapterV
     @NonNull
     @Override
     public MessageAdapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == MSG_TYPE_RIGHT){
-            View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_right, parent, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.message_layout, parent, false);
             return new MessageAdapter.AdapterViewHolder(view);
-        }else{
-            View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_left, parent, false);
-            return new MessageAdapter.AdapterViewHolder(view);
-        }
     }
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.AdapterViewHolder holder, int position) {
         AppointmentInfo appointmentInfo=arrayList.get(position);
         holder.show_message.setText(appointmentInfo.getMessage());
+        holder.show_name.setText(appointmentInfo.getSenderName());
     }
 
     @Override
@@ -60,28 +54,20 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.AdapterV
 
     public  class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView show_message;
+        public TextView show_name;
+
 
 
         public AdapterViewHolder(View itemView){
             super(itemView);
-            show_message=itemView.findViewById(R.id.show_meg);
+            show_message=itemView.findViewById(R.id.sender_message_text);
+            show_name=itemView.findViewById(R.id.show_name);
 
         }
 
         @Override
         public void onClick(View v) {
 
-        }
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (arrayList.get(position).getParent_id().equals(fuser.getUid())){
-            return MSG_TYPE_RIGHT;
-        }else {
-            return MSG_TYPE_LEFT;
         }
     }
 }

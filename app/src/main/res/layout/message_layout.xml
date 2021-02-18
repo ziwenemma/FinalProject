@@ -19,10 +19,10 @@
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/icon"
         android:textSize="14sp"
-        android:text="Hello"
+        android:text="Name"
         android:padding="10dp"
         android:textStyle="bold"
-        android:id="@+id/receiver_message_text"
+        android:id="@+id/show_name"
         />
 
 
@@ -31,10 +31,10 @@
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="217dp"
-        android:layout_alignParentTop="@+id/receiver_message_text"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentTop="@+id/show_name"
         android:layout_marginTop="2dp"
-        android:layout_toEndOf="@+id/icon"
+        android:layout_toEndOf="@+id/show_name"
         android:background="@drawable/background_right"
         android:padding="10dp"
         android:textColor="@color/white"
