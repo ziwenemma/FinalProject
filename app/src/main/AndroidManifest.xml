@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainPageSitter"></activity>
         <activity android:name=".AppointmentBabySitter" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".AppointmentActivity" />
@@ -26,9 +25,10 @@
         <activity android:name=".post_my_profile" />
         <activity android:name=".ChatActivitySitter" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MainPageSitter"
             android:label="Babysitter App"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainActivity"/>
         <activity android:name=".MainPageParent" />
         <activity android:name=".RegisterActivitySitter" />
         <activity android:name=".LoginActivitySitter" />
