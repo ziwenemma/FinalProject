@@ -42,7 +42,7 @@
                     android:icon="@drawable/profile_icon"
                     android:title="Profile"></item>
 
-                
+
             </menu>
         </item>
     </group>

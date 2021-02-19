@@ -57,6 +57,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'com.github.medyo:android-about-page:1.2.6'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
