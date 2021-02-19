@@ -168,4 +168,3 @@ class BlogViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickLis
 
     }
 }
-
