@@ -5,16 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5284E1ED"
+    android:background="@drawable/bg13"
     tools:context=".ProfileActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Parent profile"
+        android:fontFamily="@font/marck_script"
         android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="#B7C57EE1"/>
+        android:text="Parent profile"
+        android:textColor="#463333"
+        android:textSize="35dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold" />
     <ImageView
         android:id="@+id/profileImage"
         android:layout_width="150dp"
@@ -26,6 +29,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.056"
         app:srcCompat="@drawable/profileimage"
+        android:layout_marginTop="8dp"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
@@ -36,7 +40,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="Your Name"
-        android:textColor="#F2E86B95"
+        android:textColor="#DE0097"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,10 +52,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="16dp"
         android:text="Your Email Address"
-        android:textColor="#F2E86B95"
+        android:textColor="#DE0097"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +69,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Phone Number"
-        android:textColor="#F2E86B95"
+        android:textColor="#DE0097"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
