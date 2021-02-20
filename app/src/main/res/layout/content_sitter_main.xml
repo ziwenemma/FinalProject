@@ -10,16 +10,19 @@
     app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
     <TextView
+        android:id="@+id/texttitle"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:layout_marginTop="10dp"
-        android:text="MyPostProfile"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/lilita_one"
+        android:gravity="center"
+        android:text="My Post Profile"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="#B80528"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="15sp"
-        android:id="@+id/texttitle"
-        android:gravity="center"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.cardview.widget.CardView
@@ -35,13 +38,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="622dp">
+            android:layout_height="622dp"
+            android:background="@drawable/bg12">
 
             <ImageView
                 android:id="@+id/sitter_image"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:scaleType="fitCenter"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/image_person" />
 
             <TextView
@@ -57,6 +62,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="Name"
+                android:textColor="#7D0404"
                 android:textSize="18sp" />
 
             <TextView
@@ -90,6 +96,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="Age:"
+                android:textColor="#7D0404"
                 android:textSize="15sp"
 
                 />
@@ -127,6 +134,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="City:"
+                android:textColor="#7D0404"
                 android:textSize="15sp"
 
                 />
@@ -154,11 +162,11 @@
 
             <TextView
                 android:id="@+id/babysitte_des"
-                android:layout_width="500dp"
-                android:layout_height="80dp"
+                android:layout_width="381dp"
+                android:layout_height="84dp"
                 android:layout_below="@+id/sittercity"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/border"
                 android:gravity="center"
@@ -173,7 +181,7 @@
                 android:layout_below="@+id/babysitte_des"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="48dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="#ffccff"
                 android:gravity="center"
                 android:text="$30/hour"
@@ -186,8 +194,8 @@
                 android:layout_below="@+id/babysitte_des"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="275dp"
-                android:layout_marginLeft="127dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="120dp"
+                android:layout_marginTop="15dp"
                 android:layout_toRightOf="@+id/babysitter_rate"
                 android:background="#ffccff"
                 android:gravity="center"
@@ -202,11 +210,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="17dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="273dp"
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="phone:"
+                android:textColor="#7D0404"
                 android:textSize="15sp" />
 
             <TextView
@@ -218,7 +227,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="217dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="21dp"
                 android:layout_toRightOf="@+id/phone_sitter"
                 android:background="#ccccff"
@@ -240,6 +249,7 @@
                 android:background="@drawable/border"
                 android:gravity="center"
                 android:text="email:"
+                android:textColor="#7D0404"
                 android:textSize="15sp" />
 
             <TextView
@@ -262,15 +272,16 @@
 
             <Button
                 android:id="@+id/sitterupdateto"
-                android:layout_width="256dp"
+                android:layout_width="240dp"
                 android:layout_height="36dp"
                 android:layout_below="@+id/babysitter_email"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="30dp"
                 android:background="#e0e0e0"
                 android:gravity="center"
                 android:onClick="changeProfile"
                 android:text="Update it"
+                android:textColor="#B80528"
                 android:textSize="18sp" />
 
         </RelativeLayout>

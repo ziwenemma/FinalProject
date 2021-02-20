@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#CCCCFF"
+    android:background="@drawable/bg9"
     tools:context=".LoginActivitySitter"
     >
 
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:background="#66B2FF"
+        android:background="@drawable/bg10"
         android:orientation="vertical">
 
         <TextView

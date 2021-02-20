@@ -17,6 +17,7 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -45,7 +47,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
     public static final String TAG = "TAG";
     EditText changeGender,changeParentName,changeChildAge,changeEmailAdd,changePhone,changeAdd,changeRequirement;
-    ImageView changeImageView;
+    ImageButton changeImageView;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -77,7 +79,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
 
         String userID=user.getUid();
-        storageReference= FirebaseStorage.getInstance().getReference();
+        storageReference= FirebaseStorage.getInstance("gs://finalproject-10b66.appspot.com/").getReference();
         changeImageView=findViewById(R.id.changeImageView);
 
 
@@ -125,7 +127,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
 
 
-        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/image.jpg");
+        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
             @Override
@@ -227,9 +229,7 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri imageUri = data.getData();
-                changeImageView.setImageURI(imageUri);
-
-
+                uploadImageToFirebase(imageUri);
             }
         }
     }
@@ -252,5 +252,25 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    private void uploadImageToFirebase(Uri imageUri) {
+        //  image to firebase storage
+        final StorageReference fileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(changeImageView);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+    }
 }

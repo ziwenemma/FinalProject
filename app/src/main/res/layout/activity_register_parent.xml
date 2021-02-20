@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivityParent"
     android:orientation="vertical"
-    android:background="#CCe5ff"
+    android:background="@drawable/bg3"
     >
 
     <TextView

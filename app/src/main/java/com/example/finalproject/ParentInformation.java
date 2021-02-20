@@ -75,14 +75,14 @@ public class ParentInformation extends AppCompatActivity  {
         Requirement=findViewById(R.id.Requirement);
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance("gs://finalproject-10b66.appspot.com/").getReference();
         ImageView=findViewById(R.id.ImageView);
 
 
 
 
 
-        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
+        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
             @Override
