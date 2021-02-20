@@ -251,6 +251,25 @@ public class PostInfoParent extends AppCompatActivity implements AdapterView.OnI
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+private void uploadImageToFirebase(Uri imageUri) {
+        //  image to firebase storage
+        final StorageReference fileRef = storageReference.child("parentUsers/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(changeImageView);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-
+    }
 }
