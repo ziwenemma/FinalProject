@@ -5,9 +5,10 @@
     android:id="@+id/update_my_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg11"
     tools:context=".post_my_profile">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/imagesitter_ed"
         android:layout_width="200dp"
         android:layout_height="150dp"
@@ -29,6 +30,7 @@
         android:ems="10"
         android:hint="Your Full Name"
         android:inputType="textPersonName"
+        android:textColor="#402121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:ems="10"
         android:hint="Your Age"
         android:inputType="textPersonName"
+        android:textColor="#402121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -61,6 +64,7 @@
         android:ems="10"
         android:hint="Email address"
         android:inputType="text"
+        android:textColor="#402121"
         android:textSize="20sp"
         android:layout_below="@+id/changeSitterAge"/>
 
@@ -74,6 +78,7 @@
         android:ems="10"
         android:hint="Phone number"
         android:inputType="text"
+        android:textColor="#402121"
         android:textSize="20sp"
         android:layout_below="@+id/sitteremail"/>
 
@@ -87,6 +92,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="10dp"
         android:hint="Gender: Female/Male"
+        android:textColor="#402121"
         android:orientation="horizontal" />
 
     <EditText
@@ -99,6 +105,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="City"
+        android:textColor="#402121"
         android:inputType="textMultiLine" />
 
     <EditText
@@ -112,6 +119,7 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Rate/hour"
+        android:textColor="#402121"
         android:inputType="textMultiLine" />
 
     <EditText
@@ -124,16 +132,18 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Description about yourself"
+        android:textColor="#402121"
         android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="120dp"
         android:layout_below="@id/editTextTextMultiLine"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="Update My Profile"
-        android:background="#D2B4DE"/>
+        android:textStyle="bold"
+        android:background="#FA9999"/>
 
 </RelativeLayout>
