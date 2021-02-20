@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,6 +37,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -47,7 +49,7 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
     public static final String TAG = "TAG";
     EditText changeSitterGender,changeSitterName,changeSitterAge,changeSitterEmail,changeSitterPhone,changeSitterCity,changeSitterRate,changeSitterDesc;
-    ImageView changeImageSitter;
+    ImageButton changeImageSitter;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser sitteruser;
@@ -126,7 +128,7 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
 
 
-        StorageReference profileRef = storageReference.child("babysitterusers/"+fAuth.getCurrentUser().getUid()+"/image.jpg");
+        StorageReference profileRef = storageReference.child("babysitterusers/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
             @Override
@@ -238,11 +240,33 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
         if (requestCode == 1000) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri imageUri = data.getData();
-                changeImageSitter.setImageURI(imageUri);
-
+                uploadImageToFirebase(imageUri);
 
             }
         }
+    }
+
+
+    private void uploadImageToFirebase(Uri imageUri) {
+        //  image to firebase storage
+        final StorageReference fileRef = storageReference.child("babysitterusers/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(changeImageSitter);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -262,6 +286,8 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+
 
 
 

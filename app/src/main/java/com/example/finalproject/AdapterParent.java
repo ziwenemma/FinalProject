@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,7 +25,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
     public Context c;
     public ArrayList<InformationSitter> arrayList;
     int num = 0;
-
+    StorageReference storageReference;
 
     public AdapterParent(Context c, ArrayList<InformationSitter> arrayList) {
         this.c = c;
@@ -58,6 +62,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
         holder.t2.setText(informationSitter.getSitterCity());
         holder.t3.setText(informationSitter.getSitterRate());
         holder.t4.setText(informationSitter.getSitterDesc());
+        Picasso.get().load(informationSitter.getImage());
 
     }
 
@@ -71,6 +76,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
         public TextView t2;
         public TextView t3;
         public TextView t4;
+        public ImageView i1;
 
         public AdapterViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +85,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
             t2 = (TextView) itemView.findViewById(R.id.text5);
             t3 = (TextView) itemView.findViewById(R.id.text3);
             t4=(TextView)itemView.findViewById(R.id.text2);
-
+            i1=(ImageView)itemView.findViewById(R.id.productimage);
 
         }
 

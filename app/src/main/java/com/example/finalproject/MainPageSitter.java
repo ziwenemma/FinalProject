@@ -74,7 +74,7 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
         SitterImageView=findViewById(R.id.sitter_image);
 
 
-        StorageReference profileRef = storageReference.child("parentuser/"+fAuth.getCurrentUser().getUid()+"/profileimage.jpg");
+        StorageReference profileRef = storageReference.child("babysitterusers/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
 
             @Override
