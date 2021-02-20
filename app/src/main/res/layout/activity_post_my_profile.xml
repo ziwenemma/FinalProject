@@ -8,7 +8,7 @@
     android:background="@drawable/bg11"
     tools:context=".post_my_profile">
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imagesitter_ed"
         android:layout_width="200dp"
         android:layout_height="150dp"
