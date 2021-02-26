@@ -4,11 +4,12 @@ public class InformationSitter {
     public InformationSitter(){
     }
 
-    String id,sitterName,sitterAge,sitterCity,sitterRate,sitterDesc,sitterEmail,sitterPhone,sitterGender;
+    String image,id,sitterName,sitterAge,sitterCity,sitterRate,sitterDesc,sitterEmail,sitterPhone,sitterGender;
 
 
-    public InformationSitter(String id,String sitterName,  String sitterAge, String sitterCity, String sitterRate, String sitterDesc, String sitterEmail, String sitterPhone,String sitterGender) {
+    public InformationSitter(String image,String id,String sitterName,  String sitterAge, String sitterCity, String sitterRate, String sitterDesc, String sitterEmail, String sitterPhone,String sitterGender) {
         this.id = id;
+        this.image=image;
         this.sitterName = sitterName;
         this.sitterAge = sitterAge;
         this.sitterCity = sitterCity;
@@ -19,7 +20,13 @@ public class InformationSitter {
         this.sitterGender = sitterGender;
     }
 
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getId() {
         return id;

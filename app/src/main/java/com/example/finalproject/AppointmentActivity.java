@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +113,8 @@ public class AppointmentActivity extends AppCompatActivity {
                 blogViewHolder.setEmail(appointmentInfo.getBabysitterEmail());
                 blogViewHolder.setRate(appointmentInfo.getBabysitterRate());
                 blogViewHolder.setStatus(appointmentInfo.getStatus());
+                blogViewHolder.setimage(appointmentInfo.getBabySitterImage());
+
                 String pid=appointmentInfo.getBabysitter_id();
                 String id=appointmentInfo.getParent_id();
 
@@ -218,6 +222,13 @@ public class AppointmentActivity extends AppCompatActivity {
             astatus.setText(status);
 
         }
+
+        public String setimage(String url){
+            ImageView image=(ImageView)mView.findViewById(R.id.productimage);
+            Picasso.get().load(url).into(image);
+            return url;
+        }
+
 
         @Override
         public void onClick(View v) {

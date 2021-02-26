@@ -63,6 +63,7 @@ public class AdapterParent extends RecyclerView.Adapter<AdapterParent.AdapterVie
         holder.t3.setText(informationSitter.getSitterRate());
         holder.t4.setText(informationSitter.getSitterDesc());
 
+        Picasso.get().load(informationSitter.getImage()).into(holder.i1);
     }
 
     /**

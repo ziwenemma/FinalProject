@@ -189,7 +189,7 @@ public class  post_my_profile extends AppCompatActivity implements AdapterView.O
 
 
 
-                                InformationSitter informationSitter = new InformationSitter(Id,changeSitterName.getText().toString(),
+                                InformationSitter informationSitter = new InformationSitter(changeImageSitter.toString(),Id,changeSitterName.getText().toString(),
                                         changeSitterAge.getText().toString(),changeSitterCity.getText().toString(),changeSitterRate.getText().toString(),
                                         changeSitterDesc.getText().toString(),email,changeSitterPhone.getText().toString(),
                                         changeSitterGender.getText().toString());

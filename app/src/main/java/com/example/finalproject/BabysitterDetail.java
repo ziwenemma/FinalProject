@@ -54,7 +54,8 @@ public class BabysitterDetail extends AppCompatActivity {
     private TextView babysitterDesc;
     private TextView babysitterRate;
     private TextView babysitterPhone;
-
+    private ImageView mImage;
+    private String imageurl;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class BabysitterDetail extends AppCompatActivity {
         parentReq=getIntent().getExtras().getString("Requirement");
         parentChildage=getIntent().getExtras().getString("ChildAge");
         parentAdd=getIntent().getExtras().getString("Address");
+        mImage=findViewById(R.id.babysitter_image_de);
 
 
         babysitterName=(TextView)findViewById(R.id.babysitter_name_de);
@@ -127,6 +129,7 @@ public class BabysitterDetail extends AppCompatActivity {
                 appointMap.put("ParentAdd",parentAdd);
                 appointMap.put("ChildGender",childGender);
                 appointMap.put("Status",appstatus);
+                appointMap.put("BabySitterImage",imageurl);
 
 
 
@@ -208,7 +211,10 @@ public class BabysitterDetail extends AppCompatActivity {
                 String post_phone=(String)snapshot.child("sitterPhone").getValue();
                 String post_rate=(String)snapshot.child("sitterRate").getValue();
                 String post_email=(String)snapshot.child("sitterEmail").getValue();
+                String post_image=(String)snapshot.child("image").getValue();
 
+                Glide.with(BabysitterDetail.this).load(post_image).into(mImage);
+                imageurl=post_image;
 
                 babysitterName.setText(post_name);
                 babysitterDesc.setText(post_desc);
