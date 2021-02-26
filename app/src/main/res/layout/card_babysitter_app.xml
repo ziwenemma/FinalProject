@@ -24,7 +24,7 @@
                 android:layout_width="180dp"
                 android:layout_height="200dp"
                 android:padding="4dp"
-                android:src="@drawable/image_person"/>
+                android:src="@drawable/shutterstock_648907024"/>
 
             <TextView
                 android:id="@+id/textName_baby"
