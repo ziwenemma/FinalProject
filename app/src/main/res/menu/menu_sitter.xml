@@ -9,10 +9,6 @@
         android:title="go to sitter profile page"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/post_profile"
-        android:icon="@drawable/post_profile"
-        android:title="go to sitter profile page"
-        app:showAsAction="ifRoom"/>
+
 
 </menu>

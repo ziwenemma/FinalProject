@@ -202,6 +202,9 @@ public class MainPageSitter extends AppCompatActivity implements NavigationView.
         else if (id==R.id.nav_profile){
             startActivity(new Intent(getApplicationContext(),ProfileActivitySitter.class));
         }
+        else if (id==R.id.AccountInfo){
+            startActivity(new Intent(getApplicationContext(),ProfileActivitySitter.class));
+        }
         DrawerLayout drawer=(DrawerLayout)findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return  true;
